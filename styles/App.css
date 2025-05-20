@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  text-align: center;
+}
+
+.header {
+  background-color: #28a745;
+  color: white;
+  padding: 30px 0;
+  font-size: 1.5rem;
+}
+
+.metrics {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px auto;
+  flex-wrap: wrap;
+}
+
+.metric-card {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+  text-align: center;
+  width: 150px;
+}
+
+.metric-card .icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.metric-card .number {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.metric-card .label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.division-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 40px 0;
+}
+
+.division-btn {
+  background-color: #f6fcd8;
+  border: none;
+  border-radius: 50px;
+  padding: 30px 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.division-btn:hover {
+  background-color: #e9f5c1;
+}
+
+.ward-container {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.ward-btn {
+  padding: 15px 30px;
+  background-color: #d1f0ff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
