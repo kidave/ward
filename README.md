@@ -1,1 +1,0 @@
-# walking-project-next-js
