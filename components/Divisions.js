@@ -19,7 +19,11 @@ function Divisions() {
       console.error('Error fetching wards:', error.message);
       setWards([]);
     } else {
-      setWards(data);
+      // Sort the wards alphabetically by ward_name before setting state
+      const sortedWards = [...data].sort((a, b) => 
+        a.ward_name.localeCompare(b.ward_name)
+      );
+      setWards(sortedWards);
     }
   };
 
@@ -30,8 +34,8 @@ function Divisions() {
   return (
     <div>
       <div className="division-container">
-        <button className="division-btn" onClick={() => handleDivisionClick(3)}>Eastern Suburb</button>
         <button className="division-btn" onClick={() => handleDivisionClick(1)}>Island City</button>
+        <button className="division-btn" onClick={() => handleDivisionClick(3)}>Eastern Suburb</button>
         <button className="division-btn" onClick={() => handleDivisionClick(2)}>Western Suburb</button>
       </div>
 

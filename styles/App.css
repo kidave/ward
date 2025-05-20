@@ -1,15 +1,15 @@
 body {
-  margin: 0;
+  margin: auto;
   font-family: Arial, sans-serif;
-  background-color: white;
+  background-color: whitesmoke;
   text-align: center;
 }
 
 .header {
-  background-color: #28a745;
-  color: white;
-  padding: 30px 0;
-  font-size: 1.5rem;
+  background-color: #fcc700;
+  color: whitesmoke;
+  padding: 30px;
+
 }
 
 .metrics {
@@ -21,9 +21,9 @@ body {
 }
 
 .metric-card {
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fcc700;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   padding: 20px 30px;
   text-align: center;
   width: 150px;
@@ -41,7 +41,6 @@ body {
 
 .metric-card .label {
   font-size: 0.9rem;
-  color: #555;
 }
 
 .division-container {
@@ -52,9 +51,10 @@ body {
 }
 
 .division-btn {
-  background-color: #f6fcd8;
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   border: none;
-  border-radius: 50px;
+  border-radius: 20px;
   padding: 30px 50px;
   font-size: 1rem;
   cursor: pointer;
@@ -62,7 +62,8 @@ body {
 }
 
 .division-btn:hover {
-  background-color: #e9f5c1;
+  background-color: #fcc700;
+  color: white;
 }
 
 .ward-container {
@@ -75,11 +76,17 @@ body {
 
 .ward-btn {
   padding: 15px 30px;
-  background-color: #d1f0ff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   font-weight: bold;
+}
+
+.ward-btn:hover {
+  background-color: #fcc700;
+  color: white;
 }
 
 
