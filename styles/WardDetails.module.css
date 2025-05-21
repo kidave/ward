@@ -1,29 +1,35 @@
-.ward-detail-container {
+.ward-detail-container {            /* Container for the entire ward detail page */
   font-family: Arial, sans-serif;
   background-color: whitesmoke;
 }
 
 
-.ward-detail-header {
+.logo {                 /* Logo styling */
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+
+.ward-detail-header {         /* Top Header styling */
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fcc700;;
 }
 
-.header-left {
+
+.header-left {         /* Left side of the header */
   display: flex;
   align-items: center;
   padding: 32px;
   color: white; 
 }
 
-.logo {
-  height: 30px;
-  margin-right: 30px;
-}
 
-.home-button {
+.home-button {       /* Home button styling */
   background-color: white;
   border: none;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -33,27 +39,168 @@
   cursor: pointer;
 }
 
-.home-button:hover {
+
+.home-button:hover {    /* Home button hover effect */
   background-color: whitesmoke;
   color: grey
 }
 
-.ward-detail-main {
-  display: flex;
-  min-height: 100vh;
-}
 
-.ward-sidebar {
+.ward-sidebar {      /* Left Sidebar styling */
   width: 250px;
   padding: 20px;
   border-right: 1px solid lightgrey;
 }
 
-.ward-card {
+
+.ward-card {      /* Card styling for ward metric details */
   padding: 20px;
   background-color: #fcc700;
   border-radius: 20px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.ward-tabs {        /* Left Side Tabs for different sections */
+  margin-top: 20px;
+}
+
+
+.tab-button {       /* Left Side Tab button styling */
+  background: lightgrey;
+  border-radius: 20px;
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.tab-button:hover {     /* Left Side Tab button hover effect */
+  background-color: #fcc700;
+  color: white;
+}
+
+
+.ward-detail-main {     /* Right Side Main content area styling */
+  display: flex;
+  min-height: 100vh;
+}
+
+
+.ward-content {   /* Right Side content area styling */
+  border-left: 1px solid lightgrey;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+
+.members-list {     /* Right Side Members list styling */
+  display: flex;
+  gap: 20px; /* space between cards */
+}
+
+
+.member-card {    /* Right Side Individual Member card styling */
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 250px; /* fixed width */
+  cursor: pointer;
+}
+
+
+.member-card:hover {    /* Right Side Individual Member card hover effect */
+  background-color: #fcc700;
+  color: white;
+}
+
+
+.roads-list {   /* Right Side Roads list styling */
+  display: grid;
+  gap: 20px;
+  max-height: 100vh; /* max height for scrolling */
+  overflow-y: auto;
+  padding: 20px;
+}
+
+
+.road-button {    /* Right Side Individual Road button styling */
+  background-color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.road-button:hover {          /* Right Side Individual Road button hover effect */
+  background-color: #fcc700; 
+  color: white; 
+}
+
+/* Actions Table */
+.actions-table {
+  width: 100%;
+  min-width: 1000px;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.actions-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.actions-table td, .actions-table th {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+  word-break: break-word;
+  max-width: 400px; /* Adjust as needed */
+}
+
+
+
+.actions-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 1;
+}
+
+.actions-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.in-progress {
+  background-color: #cce5ff;
+  color: #004085;
 }
 
 .priority-tag {
@@ -66,179 +213,15 @@
   font-size: 12px;
 }
 
-.ward-tabs {
-  margin-top: 20px;
+.priority-high {
+  background-color: #dc3545;
 }
 
-.tab-button {
-  background: lightgrey;
-  border-radius: 20px;
-  border: none;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  text-align: left;
-  cursor: pointer;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+.priority-medium {
+  background-color: #ffc107;
+  color: #212529;
 }
 
-.tab-button:hover {
-  background-color: #fcc700;
-  color: white;
-}
-
-.ward-content {
-  flex: 1;
-  padding: 20px;
-}
-
-.metrics {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-
-.ward-detail-metric-card {
-  background-color: #e9ecef;
-  padding: 20px;
-  border-radius: 20px;
-  flex: 1;
-  min-width: 150px;
-  text-align: center;
-}
-
-.recent-updates {
-  margin-top: 20px;
-}
-
-.updates-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.updates-table th,
-.updates-table td {
-  border: 1px solid #dee2e6;
-  padding: 10px;
-  text-align: left;
-}
-
-.no-data {
-  text-align: center;
-  color: #888;
-}
-
-.road-button {
-  cursor: pointer;
-  border-radius: 20px;
-}
-
-.road-button:hover {
-  background-color: #d0e6ff;
-}
-
-.ward-content {
-  flex: 1;
-  padding: 20px;
-  border-left: 1px solid lightgrey;
-  min-height: 300px;
-  overflow-y: auto;
-  max-width: 100%;
-}
-
-.members-list {
-  display: flex;
-  gap: 20px; /* space between cards */
-}
-
-.members-list h3 {
-
-}
-
-.members-list ul {
-
-}
-
-.members-list li {
-
-}
-
-.members-list li:hover {
-
-}
-
-.member-card {
-  padding: 20px;
-  border-radius: 20px;
-  border: none;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  width: 250px; /* fixed width */
-  cursor: pointer;
-}
-
-.member-card:hover {
-  background-color: #fcc700;
-  color: white;
-}
-
-.members-heading {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.roads-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  max-height: 70vh;
-  overflow-y: auto;
-  padding-right: 10px;
-  padding-top: 10px;
-}
-
-.road-button {
-  background-color: white;             /* White background */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  text-align: left;
-  cursor: pointer;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  white-space: normal;
-  word-wrap: break-word;
-}
-
-.road-button:hover {
-  background-color: #fcc700; 
-  color: white; 
-}
-
-.roads-list h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  color: #2c3e50;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 8px;
-  text-align: center;
-}
-
-
-.logo {
-  width: 75px;
-  height: 75px;
-  object-fit: contain;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-.webmap-embed {
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
+.priority-low {
+  background-color: #28a745;
 }
