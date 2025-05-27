@@ -1,11 +1,12 @@
-import React from 'react';
+import styles from '../styles/layout/header.module.css';
 
-function Header() {
+export default function Header({ title = "Ward Dashboard" }) {
   return (
-    <header className="header">
-      <h1>Ward Dashboard</h1>
+    <header className={styles.header}>
+      <div className={styles.headerLeft}>
+        <img src="/wp_icon_sm.png" alt="Logo" className={styles.logo} />
+        <h1>{title}</h1>
+      </div>
     </header>
   );
 }
-
-export default Header;

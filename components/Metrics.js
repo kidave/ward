@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
+import styles from '../styles/components/card.module.css';
 
 function Metrics() {
   const [metrics, setMetrics] = useState([]);
@@ -21,11 +22,11 @@ function Metrics() {
   }, []);
 
   return (
-    <div className="metrics">
+    <div className={styles.metrics}>
       {metrics.map((m, i) => (
-        <div className="metric-card" key={i}>
-          <div className="number">{m.number}</div>
-          <div className="label">{m.label}</div>
+        <div className={styles.metricSmall} key={i}>
+          <div className={styles.number}>{m.number}</div>
+          <div className={styles.label}>{m.label}</div>
         </div>
       ))}
     </div>

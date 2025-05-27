@@ -1,0 +1,80 @@
+/* Metrics for Home Page and Ward Page */
+
+.metrics {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin: 50px;
+  flex-wrap: wrap;
+}
+
+.metricSmall {
+  background-color: #fcc700;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 40px;
+  text-align: center;
+}
+
+.metricSmall .number {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.metricSmall .label {
+  font-size: 0.9rem;
+}
+
+
+.metricBig {
+  background-color: #fcc700;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.collapsed .metricBig {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+
+
+/* Members for Ward Page */
+.memberList {
+  display: flex;
+  gap: 20px;
+}
+
+.memberCard {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  cursor: pointer;
+}
+
+.memberCard:hover {
+  background-color: #fcc700;
+  color: white;
+}
+
+
+.wardCard {
+  padding: 20px;
+  background-color: #fcc700;
+  border-radius: 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.collapsed .wardCard {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}

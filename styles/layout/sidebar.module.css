@@ -1,0 +1,15 @@
+.leftSidebar {
+  width: 250px;
+  padding: 20px;
+  border-right: 2px solid lightgrey;
+  position: relative;
+  transition: width 0.3s ease;
+}
+
+.leftSidebar.collapsed {
+  overflow: hidden;
+}
+
+
+
+
