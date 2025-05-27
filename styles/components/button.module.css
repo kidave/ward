@@ -1,0 +1,174 @@
+/* Header Button Home Page */
+
+.home {
+  background-color: white;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin-right: 50px;
+  padding: 20px 30px;
+  cursor: pointer;
+}
+
+.home:hover {
+  background-color: whitesmoke;
+  color: grey;
+}
+
+
+.tab {
+  background: lightgrey;
+  border-radius: 20px;
+  border: none;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab:hover {
+  background-color: #fcc700;
+  color: white;
+}
+
+.tab.active {
+  background-color: #fcc700;
+  color: white;
+}
+
+
+/* Toggle Button */
+
+.toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fcc700;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: white;
+}
+
+.toggle:hover {
+  background: #e6b800;
+}
+
+
+.small {
+  background-color: white;
+  color: grey;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.small:hover {
+  background-color: #fcc700;
+  color: white;
+  border-color: #fcc700;
+}
+
+
+.medium {
+  background-color: white;
+  color: grey;
+  border: 2px solid #fcc700;
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  opacity: 0.4;
+}
+
+.medium:hover {
+  background-color: #fcc700;
+  color: white;
+  transform: translateY(-5px);
+  opacity: 0.6;
+}
+
+.medium.active {
+  background-color: #fcc700;
+  color: white;
+  font-weight: bold;
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
+
+.big {
+  background-color: #fcc700;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 20px 40px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.big:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.6;
+}
+
+.big.active {
+  background-color: #fcc700;
+  transform: translateY(-1px);
+  opacity: 1;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.list {
+  display: grid;
+  gap: 20px;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.wide {
+  background-color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.wide:hover {
+  background-color: #fcc700; 
+  color: white; 
+}
+
+
+.resizeHandle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: transparent;
+  cursor: col-resize;
+  z-index: 5;
+}

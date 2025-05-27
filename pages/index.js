@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Metrics from "../components/Metrics";
-import Divisions from "../components/Divisions";
+import Region from "../components/Region";
 import Layout from "../components/Layout";
 
 function HomePage() {
@@ -10,7 +10,7 @@ function HomePage() {
         <title>Ward Dashboard</title>
       </Head>
       <Metrics />
-      <Divisions />
+      <Region />
     </>
   );
 }

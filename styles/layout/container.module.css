@@ -1,0 +1,51 @@
+.regionContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.cityContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+
+.divisionContainer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 50px 0;
+  flex-wrap: wrap;
+}
+
+
+
+.wardContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+
+.wardContent {
+  flex: 1;
+  padding: 20px;
+  border-left: 1px solid lightgrey;
+  overflow-x: auto;
+}
+
+.wardDetailContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wardDetailMain {
+  display: flex;
+  flex: 1;
+}

@@ -1,0 +1,23 @@
+.header {
+  background-color: #fcc700;
+  color: whitesmoke;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  color: white; 
+}
+
+.logo {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+

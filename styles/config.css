@@ -1,0 +1,10 @@
+:root {
+  --primary-color: #fcc700;
+  --primary-hover: #e6b800;
+  --secondary-color: whitesmoke;
+  --text-light: white;
+  --text-dark: #343a40;
+  --border-radius: 20px;
+  --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
