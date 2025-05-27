@@ -116,7 +116,7 @@ export default function WardDetail() {
 
 
   return (
-    <div className={styles.wardDetailContainer}>
+    <div className={styles.page}>
       <WardHeader />
       <div className={styles.wardDetailMain}>
         <WardSidebar 
