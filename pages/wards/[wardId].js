@@ -15,7 +15,10 @@ export default function WardDetail() {
   const [activeTab, setActiveTab] = useState('committees');
   const [members, setMembers] = useState([]);
   const [roads, setRoads] = useState([]);
+  const [actions, setActions] = useState([]);
+  const [junctions, setJunctions] = useState([]);
   const [selectedRoad, setSelectedRoad] = useState(null);
+  const [expandedRowId, setExpandedRowId] = useState(null);
 
   useEffect(() => {
     if (!wardId) return;
@@ -32,7 +35,7 @@ export default function WardDetail() {
         setMetrics(data);
       } catch (err) {
         setError(err.message);
-      }
+      } 
     };
 
     fetchMetrics();
@@ -57,6 +60,7 @@ export default function WardDetail() {
       };
 
       fetchMembers();
+
     } else if (activeTab === 'roads') {
       const fetchRoads = async () => {
         try {
@@ -79,6 +83,23 @@ export default function WardDetail() {
       };
 
       fetchRoads();
+
+    } else if (activeTab === 'actions') {
+      const fetchActions = async () => {
+        try {
+          const { data, error } = await supabase
+            .from('action')
+            .select('*')
+            .eq('ward_id', wardId);
+
+          if (error) throw error;
+          setActions(data);
+        } catch (err) {
+          setError(err.message);
+        }
+      };
+
+      fetchActions();
     }
   }, [activeTab, wardId]);
 
@@ -88,13 +109,17 @@ export default function WardDetail() {
     // router.push(`/road/${roadId}`); // Uncomment if you implement road page
   };
 
+  const toggleRow = (actionId) => {
+    setExpandedRowId(expandedRowId === actionId ? null : actionId);
+  };
+
   return (
     <div className={styles['ward-detail-container']}>
       {/* Header */}
       <div className={styles['ward-detail-header']}>
         <div className={styles['header-left']}>
           <img src="/wp_icon_sm.png" alt="Ward" className={styles["logo"]} />
-          <h2>Ward Committees Dashboard</h2>
+          <h2>Ward Committee Dashboard</h2>
         </div>
         <button className={styles['home-button']} onClick={() => router.push('/')}>Home</button>
       </div>
@@ -108,8 +133,8 @@ export default function WardDetail() {
             {metrics && (
               <>
                 <h3>{metrics.ward_name}</h3>
-                <p>{metrics.total_roads} Roads</p>
-                <p>{metrics.total_members} Members</p>
+                <p>{metrics.total_roads} Actions Pending</p>
+                <p>{metrics.total_members} Ward Members</p>
               </>
             )}
           </div>
@@ -119,13 +144,31 @@ export default function WardDetail() {
               className={`${styles['tab-button']} ${activeTab === 'committees' ? 'active' : ''}`}
               onClick={() => setActiveTab('committees')}
             >
-              Committee Members
+              Member
+            </button>
+            <button
+              className={`${styles['tab-button']} ${activeTab === 'actions' ? 'active' : ''}`}
+              onClick={() => setActiveTab('actions')}
+            >
+              Action
+            </button>
+            <button
+              className={`${styles['tab-button']} ${activeTab === 'outcomes' ? 'active' : ''}`}
+              onClick={() => setActiveTab('outcomes')}
+            >
+              Outcome
             </button>
             <button
               className={`${styles['tab-button']} ${activeTab === 'roads' ? 'active' : ''}`}
               onClick={() => setActiveTab('roads')}
             >
-              Roads & Junctions
+              Road
+            </button>
+            <button
+              className={`${styles['tab-button']} ${activeTab === 'junctions' ? 'active' : ''}`}
+              onClick={() => setActiveTab('junctions')}
+            >
+              Junction
             </button>
           </div>
         </div>
@@ -134,38 +177,78 @@ export default function WardDetail() {
         <div className={styles["ward-content"]}>
           {activeTab === 'committees' && (
             <>
-              <h3>Members</h3>
+              <h3>Ward Members</h3>
               <div className={styles["members-list"]}>
                 {members.length === 0 ? (
                   <p>No members found.</p>
                 ) : (
                   members.map((member, i) => (
                     <div key={i} className={styles["member-card"]}>
-                      <strong>Name:</strong> {member.member_name}<br />
-                      <strong>Address:</strong> {member.address}<br />
-                      <strong>Email:</strong> {member.email}<br />
+                      {member.member_name}<br /><p />
+                      <strong>Actions:</strong> {member.actions_taken}<br />
                     </div>
                   ))
                 )}
               </div>
+            </>
+          )}
 
-              {wardId === '11' && (
-                <div className={styles["webmap-embed"]}>
-                  <iframe
-                    title="Ward 15 Web Map"
-                    src="https://walkingproject.github.io/webmap-mumbai-ws_he/#14/19.0605/72.8688"
-                    width="100%"
-                    height="600px"
-                    style={{ border: 'none', marginTop: '20px' }}
-                  ></iframe>
-                </div>
-              )}
+          {activeTab === 'actions' && (
+            <>
+              <h3>Actions</h3>
+              <div className={styles["actions-list"]}>
+                {actions === null ? (
+                  <p>Loading actions...</p>
+                ) : actions.length === 0 ? (
+                  <p>No actions found.</p>
+                ) : (
+                  <div className={`${styles["actions-wrapper"]}`}>
+                    <table className={styles["actions-table"]}>
+                      <thead>
+                        <tr>
+                          <th>Type</th>
+                          <th>Description</th>
+                          <th>Landmark Start</th>
+                          <th>Landmark End</th>
+                          <th>Status</th>
+                          <th>Priority</th>
+                          <th>Event Date</th>
+                          <th>Reference Image</th>
+                          {/* Add more columns as needed */}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {actions.map((action) => (
+                          <tr key={action.action_id}>
+
+                            <td>{action.action_type}</td>
+                            <td>{action.description}</td>
+                            <td>{action.landmark_start}</td>
+                            <td>{action.landmark_end}</td>
+                            <td>
+                              <span className={`${styles.status} ${styles[action.status.toLowerCase()]}`}>
+                                {action.status}
+                              </span>
+                            </td>
+                            <td>
+                              <span className={`${styles['priority-tag']} ${styles['priority-' + action.priority.toLowerCase()]}`}>
+                                {action.priority}
+                              </span>
+                            </td>
+                            <td>{new Date(action.event_date).toLocaleDateString()}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
             </>
           )}
 
           {activeTab === 'roads' && (
             <>
-              <h3>Roads & Junctions</h3>
+              <h3>List of Roads</h3>
               <div className={styles["roads-list"]}>
                 {roads.length > 0 ? (
                   roads.map((road) => (

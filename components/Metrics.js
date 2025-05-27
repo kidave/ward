@@ -24,7 +24,6 @@ function Metrics() {
     <div className="metrics">
       {metrics.map((m, i) => (
         <div className="metric-card" key={i}>
-          <div className="icon">{m.icon}</div>
           <div className="number">{m.number}</div>
           <div className="label">{m.label}</div>
         </div>
