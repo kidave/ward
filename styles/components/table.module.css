@@ -4,7 +4,6 @@
   border-spacing: 0;
   background: white;
   overflow: hidden;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   font-size: 12px;
   line-height: 1;
 }
@@ -22,7 +21,6 @@
 .wrapper {
   overflow-x: auto;
   max-width: 100%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   background: white;
 }
 
@@ -37,7 +35,6 @@
 }
 
 .table thead th:hover {
-  background-color: #fcc700;
   cursor: pointer;
 }
 
@@ -88,18 +85,16 @@
   cursor: text;
   transition: all 0.3s ease;
   min-width: 180px;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .filterInput:hover {
-  background-color: #fcc700;
-  color: white;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .filterInput:focus {
   background-color: lightgrey;
-  color: white;
+  color: black;
   opacity: 1;
   outline: none;
 }

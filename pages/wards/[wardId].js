@@ -15,7 +15,7 @@ export default function WardDetail() {
 
   const [metrics, setMetrics] = useState(null);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('member');
+  const [activeTab, setActiveTab] = useState('action');
   const [member, setMember] = useState([]);
   const [road, setRoad] = useState([]);
   const [action, setAction] = useState([]);

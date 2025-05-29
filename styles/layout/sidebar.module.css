@@ -17,4 +17,84 @@
 }
 
 
+/* Logo Styles */
+.logoContainer {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.logoText {
+  padding: 5px;
+  margin-left: 10px;
+  color: grey;
+  text-align: left;
+}
+
+.logoText:hover {
+  cursor: pointer;
+}
+
+.logoExpanded {
+  display: flex;
+  justify-content: left;
+  margin-left: 20px;
+  transition: all 0.3s ease;
+}
+
+.logoExpanded:hover {
+  cursor: pointer;
+}
+
+
+.logoCollapsed {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  transition: all 0.3s ease;
+}
+
+.logoCollapsed:hover {
+  cursor: pointer;
+}
+
+/* When sidebar is collapsed */
+.leftSidebar.collapsed .logoExpanded {
+  display: none;
+}
+
+/* When sidebar is expanded */
+.leftSidebar:not(.collapsed) .logoCollapsed {
+  display: none;
+}
+
+
+/* Add these to your existing sidebar.module.css */
+.selector {
+  padding: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.dropdown {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  color: grey;
+}
+
+.dropdown:hover {
+  cursor: pointer;
+}
+
+.dropdown:focus {
+  outline: none;
+  border-color: whitesmoke;
+}
+
+.dropdown option {
+  padding: 0.5rem;
+  background-color: whitesmoke;
+  color: grey;
+}
 

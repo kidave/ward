@@ -1,21 +1,3 @@
-/* Header Button Home Page */
-
-.home {
-  background-color: white;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  margin-right: 50px;
-  padding: 20px 30px;
-  cursor: pointer;
-}
-
-.home:hover {
-  background-color: whitesmoke;
-  color: grey;
-}
-
-
 .tab {
   background: none;
   border: none;
@@ -73,9 +55,7 @@
 }
 
 .small:hover {
-  background-color: #fcc700;
-  color: white;
-  border-color: #fcc700;
+  background-color: whitesmoke;
 }
 
 
@@ -144,17 +124,15 @@
 
 .wide {
   background-color: white;
-  padding: 10px 20px;
   border: none;
+  padding: 10px;
   border-radius: 5px;
   text-align: left;
   cursor: pointer;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .wide:hover {
-  background-color: #fcc700; 
-  color: white; 
+  background-color: whitesmoke; 
 }
 
 
