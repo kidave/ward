@@ -20,6 +20,7 @@ export default function WardDetail() {
   const [road, setRoad] = useState([]);
   const [action, setAction] = useState([]);
   const [junction, setJunction] = useState([]);
+  const [outcome, setOutcome] = useState([]); // Added outcome state
   const [selectedRoad, setSelectedRoad] = useState(null);
   const [expandedRowId, setExpandedRowId] = useState(null);
 
@@ -56,7 +57,7 @@ export default function WardDetail() {
             .eq('ward_id', wardId);
 
           if (error) throw error;
-          console.log('Committee data:', data); // Debug log
+          console.log('Committee data:', data);
           setMember(data);
         } catch (err) {
           console.error('Error fetching committee:', err);
@@ -105,15 +106,71 @@ export default function WardDetail() {
       };
 
       fetchAction();
+    
+    } else if (activeTab === 'outcome') {
+      const fetchOutcome = async () => {
+        try {
+          // Fetch both meetings and updates data
+          const { data: meeting, error: meetingError } = await supabase
+            .from('meeting')
+            .select('*')
+            .eq('ward_id', wardId)
+            .order('meeting_date', { ascending: false });
+
+          const { data: update, error: updateError } = await supabase
+            .from('update')
+            .select('*')
+            .eq('ward_id', wardId)
+            .order('update_date', { ascending: false });
+
+          if (meetingError || updateError) throw meetingError || updateError;
+
+          // Combine and format the data
+          const combinedData = [
+            ...(meeting?.map(meeting => ({
+              id: `meeting-${meeting.meeting_id}`,
+              type: 'meeting',
+              date: new Date(meeting.meeting_date),
+              title: 'Committee Meeting',
+              location: meeting.meeting_location,
+              attendees: meeting.notable_attendees,
+              discussion: formatDiscussionPoints(meeting.discussion),
+              mood: meeting.mood_rating,
+              icon: '👥'
+            })) || []),
+            ...(update?.map(update => ({
+              id: `update-${update.id}`,
+              type: 'update',
+              date: new Date(update.date),
+              title: 'Monthly Update',
+              content: update.operations_updates,
+              peopleMet: update.notable_meetings,
+              issues: update.issues_needing_support,
+              icon: '📅'
+            })) || [])
+          ].sort((a, b) => b.date - a.date);
+
+          setOutcome(combinedData);
+        } catch (err) {
+          console.error('Error fetching outcome data:', err);
+          setError(err.message);
+        }
+      };
+
+      fetchOutcome();
     }
   }, [activeTab, wardId]);
+
+  // Helper function to format discussion points
+  const formatDiscussionPoints = (discussion) => {
+    if (!discussion) return [];
+    return discussion.split(/\d+\./).filter(point => point.trim()).map(point => point.trim());
+  };
 
   const handleRoadClick = (roadId) => {
     alert(`Clicked road name: ${roadId}`);
     setSelectedRoad(roadId);
-    // router.push(`/road/${roadId}`); // Uncomment if you implement road page
   };
-
 
   return (
     <div className={styles.page}>
@@ -131,7 +188,7 @@ export default function WardDetail() {
           member={member}
           road={road}
           junction={junction}
-
+          outcome={outcome}
           onRoadClick={handleRoadClick}
         />
       </div>
