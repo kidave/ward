@@ -5,6 +5,10 @@ import cardStyles from '../../styles/components/card.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { supabase } from '../../utils/supabaseClient';
+import { IoFootsteps } from "react-icons/io5";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
+
 
 export default function WardSidebar({ 
   metrics, 
@@ -108,24 +112,12 @@ export default function WardSidebar({
       <div className={styles.logoContainer} onClick={() => router.push('/')}>
         {!isCollapsed ? (
           <div className={styles.logoExpanded}>
-            <Image 
-              src="/footprint.png" 
-              alt="App Logo" 
-              width={30} 
-              height={30}
-              priority
-            />
+            <IoFootsteps className={styles.logoIcon} />
             <span className={styles.logoText}>Walking Project</span>
           </div>
         ) : (
           <div className={styles.logoCollapsed}>
-            <Image 
-              src="/footprint.png"
-              alt="App Icon" 
-              width={30} 
-              height={30}
-              priority
-            />
+            <IoFootsteps className={styles.logoIcon} />
           </div>
         )}
       </div>
@@ -133,8 +125,9 @@ export default function WardSidebar({
       <button 
         className={`${buttonStyles.toggle} ${isCollapsed ? buttonStyles.toggleCollapsed : ''}`}
         onClick={toggleSidebar}
+        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
-        {isCollapsed ? '→' : '←'}
+        {isCollapsed ? <FiChevronRight className={styles.logoIcon} /> : <FiChevronLeft className={styles.logoIcon} />}
       </button>
 
       {!isCollapsed && (
