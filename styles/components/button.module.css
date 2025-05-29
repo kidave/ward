@@ -3,7 +3,7 @@
 .home {
   background-color: white;
   border: none;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   margin-right: 50px;
   padding: 20px 30px;
@@ -17,25 +17,23 @@
 
 
 .tab {
-  background: lightgrey;
-  border-radius: 20px;
+  background: none;
   border: none;
-  width: 100%;
+  width: 90%;
+  margin-left: 10px;
   margin-bottom: 10px;
   padding: 10px;
+  border-radius: 10px;
   text-align: left;
   cursor: pointer;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .tab:hover {
-  background-color: #fcc700;
-  color: white;
+  background-color: whitesmoke;
 }
 
 .tab.active {
-  background-color: #fcc700;
-  color: white;
+  background-color: whitesmoke;
 }
 
 
@@ -82,9 +80,8 @@
 
 
 .medium {
+  border: none;
   background-color: white;
-  color: grey;
-  border: 2px solid #fcc700;
   border-radius: 10px;
   padding: 15px 30px;
   font-size: 1rem;
@@ -95,15 +92,14 @@
 }
 
 .medium:hover {
-  background-color: #fcc700;
-  color: white;
+  background-color: whitesmoke;
   transform: translateY(-5px);
   opacity: 0.6;
 }
 
 .medium.active {
-  background-color: #fcc700;
-  color: white;
+  background-color: whitesmoke;
+  color: grey;
   font-weight: bold;
   transform: translateY(-1px);
   opacity: 1;
@@ -111,30 +107,30 @@
 
 
 .big {
-  background-color: #fcc700;
-  color: white;
+  background-color: white;
   border: none;
+  color: grey;
   border-radius: 10px;
   padding: 20px 40px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  opacity: 0.4;
+  opacity: 0.5;
   transition: all 0.3s ease;
 }
 
 .big:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   opacity: 0.6;
 }
 
 .big.active {
-  background-color: #fcc700;
+  background-color: whitesmoke;
   transform: translateY(-1px);
   opacity: 1;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 

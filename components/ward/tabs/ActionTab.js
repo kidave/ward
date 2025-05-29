@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { Table, TableHeader, TableCell, ResizableColumn } from '../../shared';
+import { Table, TableHeader, TableCell, ResizableColumn, Modal } from '../../shared';
 import tableStyles from '../../../styles/components/table.module.css';
 import cellStyles from '../../../styles/components/cell.module.css';
 import { supabase } from '../../../utils/supabaseClient';
@@ -29,10 +29,8 @@ export default function ActionTable({ actions = [] }) {
     description: '',
     priority: '',
     status: '',
-    event_date: '',
     landmark_start: '',
     landmark_end: '',
-    reference_image: ''
   });
 
   const [enumOptions, setEnumOptions] = useState({
@@ -146,7 +144,7 @@ export default function ActionTable({ actions = [] }) {
 
   const getImageUrl = (filename) => {
   if (!filename) return null;
-  return `https://gostxgfnoilfmybaohhx.supabase.co/storage/v1/object/public/roads/${filename}`;
+  return `https://gostxgfnoilfmybaohhx.supabase.co/storage/v1/object/public/ward/${filename}`;
   };
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -186,25 +184,12 @@ export default function ActionTable({ actions = [] }) {
           onChange={(e) => handleFilterChange('status', e.target.value)}
           className={tableStyles.filterInput}
         />
-        {isImageModalOpen && (
-          <div className={tableStyles.imageModalOverlay} onClick={() => setIsImageModalOpen(false)}>
-            <div className={tableStyles.imageModalContent} onClick={(e) => e.stopPropagation()}>
-              <button 
-                className={tableStyles.closeButton}
-                onClick={() => setIsImageModalOpen(false)}
-              >
-                &times;
-              </button>
-              <img 
-                src={`https://gostxgfnoilfmybaohhx.supabase.co/storage/v1/object/public/ward/${selectedImage}`} 
-                alt="Reference" 
-                className={tableStyles.modalImage}
-              />
-            </div>
-          </div>
-        )}
       </div>
-      
+      <Modal 
+        isOpen={isImageModalOpen}
+        imageUrl={getImageUrl(selectedImage)}
+        onClose={() => setIsImageModalOpen(false)}
+      />
 
       <Table className={tableStyles.Table}>
         <thead>
@@ -310,7 +295,7 @@ export default function ActionTable({ actions = [] }) {
               <TableCell>
                 {action.reference_image ? (
                   <button 
-                    className={tableStyles.imageButton}
+                    className={cellStyles.button}
                     onClick={() => {
                       setSelectedImage(action.reference_image);
                       setIsImageModalOpen(true);

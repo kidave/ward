@@ -9,10 +9,9 @@
 }
 
 .metricSmall {
-  background-color: gold;
-  color: white;
+  background-color: whitesmoke;
   border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px 40px;
   text-align: center;
 }
@@ -28,19 +27,15 @@
 
 
 .metricBig {
-  background-color: lightgrey;
+  background-color: whitesmoke;
   border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
-  padding: 20px 20px;
-  margin-top: 30px;
+  padding: 1px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 50px;
   margin-bottom: 20px;
-}
-
-.collapsed .metricBig {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
 }
 
 
@@ -56,7 +51,7 @@
   padding: 20px;
   border-radius: 20px;
   border: none;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 250px;
   cursor: pointer;
 }
@@ -71,7 +66,7 @@
   padding: 20px;
   background-color: #fcc700;
   border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .collapsed .wardCard {

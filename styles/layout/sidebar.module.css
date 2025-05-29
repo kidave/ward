@@ -1,7 +1,7 @@
 .leftSidebar {
+  background-color: white;
   width: 250px;
-  padding: 20px;
-  border-right: 2px solid lightgrey;
+  border-right: 1px solid lightgrey;
   position: relative;
   transition: width 0.3s ease;
 }
@@ -10,6 +10,11 @@
   overflow: hidden;
 }
 
+.leftSidebar.collapsed .toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
 
 
 

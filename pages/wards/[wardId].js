@@ -127,8 +127,8 @@ export default function WardDetail() {
         />
         <WardContent 
           activeTab={activeTab}
-          member={member}
           action={action}
+          member={member}
           road={road}
           junction={junction}
 
