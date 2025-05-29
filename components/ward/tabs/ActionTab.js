@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { Table, TableHeader, TableCell, ResizableColumn } from '../../shared';
+import { Table, TableHeader, TableCell, ResizableColumn, Modal } from '../../shared';
 import tableStyles from '../../../styles/components/table.module.css';
 import cellStyles from '../../../styles/components/cell.module.css';
 import { supabase } from '../../../utils/supabaseClient';
@@ -13,7 +13,8 @@ export default function ActionTable({ actions = [] }) {
     status: 120,
     event_date: 150,
     landmark_start: 150,
-    landmark_end: 150
+    landmark_end: 150,
+    reference_image:120
   });
 
   // Sorting state
@@ -28,9 +29,8 @@ export default function ActionTable({ actions = [] }) {
     description: '',
     priority: '',
     status: '',
-    event_date: '',
     landmark_start: '',
-    landmark_end: ''
+    landmark_end: '',
   });
 
   const [enumOptions, setEnumOptions] = useState({
@@ -142,6 +142,14 @@ export default function ActionTable({ actions = [] }) {
     }
   };
 
+  const getImageUrl = (filename) => {
+  if (!filename) return null;
+  return `https://gostxgfnoilfmybaohhx.supabase.co/storage/v1/object/public/ward/${filename}`;
+  };
+
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <div className={tableStyles.wrapper}>
       <div className={tableStyles.filters}>
@@ -177,18 +185,31 @@ export default function ActionTable({ actions = [] }) {
           className={tableStyles.filterInput}
         />
       </div>
-      
+      <Modal 
+        isOpen={isImageModalOpen}
+        imageUrl={getImageUrl(selectedImage)}
+        onClose={() => setIsImageModalOpen(false)}
+      />
 
       <Table className={tableStyles.Table}>
         <thead>
           <tr>
-            <TableHeader width={columnWidths.action_type}>
-              <div onClick={() => requestSort('action_type')}>
-                Type
-                {sortConfig.key === 'action_type' && (
+            <TableHeader width={columnWidths.event_date}>
+              <div onClick={() => requestSort('event_date')}>              
+                Date
+                {sortConfig.key === 'event_date' && (
                   <span>{sortConfig.direction === 'asc' ? ' ↑' : ' ↓'}</span>
                 )}
               </div>
+              <ResizableColumn 
+                columnKey="event_date" 
+                currentWidth={columnWidths.event_date}
+                onResize={setColumnWidths}
+              />
+            </TableHeader>
+
+            <TableHeader width={columnWidths.action_type}>
+              Type
               <ResizableColumn 
                 columnKey="action_type" 
                 currentWidth={columnWidths.action_type}
@@ -223,15 +244,6 @@ export default function ActionTable({ actions = [] }) {
               />
             </TableHeader>
 
-            <TableHeader width={columnWidths.event_date}>
-              Event Date
-              <ResizableColumn 
-                columnKey="event_date" 
-                currentWidth={columnWidths.event_date}
-                onResize={setColumnWidths}
-              />
-            </TableHeader>
-
             <TableHeader width={columnWidths.landmark_start}>
               Landmark Start
               <ResizableColumn 
@@ -250,11 +262,22 @@ export default function ActionTable({ actions = [] }) {
               />
             </TableHeader>
 
+            <TableHeader width={columnWidths.reference_image}>
+              Reference Image
+              <ResizableColumn 
+                columnKey="reference_image" 
+                currentWidth={columnWidths.reference_image}
+                onResize={setColumnWidths}
+              />
+            </TableHeader>
+
+
           </tr>
         </thead>
         <tbody>
           {sortedItems.map((action) => (
             <tr key={action.action_id}>
+              <TableCell>{new Date(action.event_date).toLocaleDateString()}</TableCell>
               <TableCell>{action.action_type}</TableCell>
               <TableCell>{action.description}</TableCell>
               <TableCell>
@@ -267,9 +290,23 @@ export default function ActionTable({ actions = [] }) {
                   {action.status}
                 </span>
               </TableCell>
-              <TableCell>{new Date(action.event_date).toLocaleDateString()}</TableCell>
               <TableCell>{action.landmark_start}</TableCell>
               <TableCell>{action.landmark_end}</TableCell>
+              <TableCell>
+                {action.reference_image ? (
+                  <button 
+                    className={cellStyles.button}
+                    onClick={() => {
+                      setSelectedImage(action.reference_image);
+                      setIsImageModalOpen(true);
+                    }}
+                  >
+                    View Image
+                  </button>
+                ) : (
+                  "No image"
+                )}
+              </TableCell>
             </tr>
           ))}
         </tbody>

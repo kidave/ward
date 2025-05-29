@@ -9,9 +9,9 @@
 }
 
 .metricSmall {
-  background-color: #fcc700;
+  background-color: whitesmoke;
   border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px 40px;
   text-align: center;
 }
@@ -27,19 +27,16 @@
 
 
 .metricBig {
-  background-color: #fcc700;
+  background-color: whitesmoke;
+  color: grey;
   border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 20px 20px;
-  margin-top: 30px;
+  padding: 1px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
-}
-
-.collapsed .metricBig {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
 }
 
 
@@ -55,26 +52,32 @@
   padding: 20px;
   border-radius: 20px;
   border: none;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  width: 250px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 180px; /* Reduced width to accommodate image */
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
 }
+
+.memberImageContainer {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.memberImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 .memberCard:hover {
   background-color: #fcc700;
   color: white;
-}
-
-
-.wardCard {
-  padding: 20px;
-  background-color: #fcc700;
-  border-radius: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
-.collapsed .wardCard {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
 }

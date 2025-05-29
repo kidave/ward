@@ -15,7 +15,7 @@ export default function WardDetail() {
 
   const [metrics, setMetrics] = useState(null);
   const [error, setError] = useState(null);
-  const [activeTab, setActiveTab] = useState('member');
+  const [activeTab, setActiveTab] = useState('action');
   const [member, setMember] = useState([]);
   const [road, setRoad] = useState([]);
   const [action, setAction] = useState([]);
@@ -116,7 +116,7 @@ export default function WardDetail() {
 
 
   return (
-    <div className={styles.wardDetailContainer}>
+    <div className={styles.page}>
       <WardHeader />
       <div className={styles.wardDetailMain}>
         <WardSidebar 
@@ -127,8 +127,8 @@ export default function WardDetail() {
         />
         <WardContent 
           activeTab={activeTab}
-          member={member}
           action={action}
+          member={member}
           road={road}
           junction={junction}
 
