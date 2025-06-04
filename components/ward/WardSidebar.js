@@ -1,32 +1,34 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from '../../styles/layout/sidebar.module.css';
 import buttonStyles from '../../styles/components/button.module.css';
-import cardStyles from '../../styles/components/card.module.css';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { supabase } from '../../utils/supabaseClient';
 import { IoFootsteps } from "react-icons/io5";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-
-
 export default function WardSidebar({ 
   metrics, 
   error, 
   activeTab, 
-  setActiveTab 
+  setActiveTab,
+  disabledTabs = []
 }) {
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(250);
   const sidebarRef = useRef(null);
   const [isResizing, setIsResizing] = useState(false);
-  
+
   // State for ward selection
+  const [divisions, setDivisions] = useState([]);
   const [wards, setWards] = useState([]);
   const [currentDivision, setCurrentDivision] = useState(null);
+  const [selectedWardId, setSelectedWardId] = useState(null);
+  const [loadingDivisions, setLoadingDivisions] = useState(false);
   const [loadingWards, setLoadingWards] = useState(false);
   const [wardsError, setWardsError] = useState(null);
+
+  const isTabDisabled = (tab) => disabledTabs.includes(tab);
 
   // Handle sidebar resize
   useEffect(() => {
@@ -53,52 +55,87 @@ export default function WardSidebar({
     };
   }, [isResizing]);
 
-  // Fetch wards for the current division
+  // Fetch all divisions on mount
   useEffect(() => {
-    if (!metrics?.ward_id) return;
+    const fetchDivisions = async () => {
+      setLoadingDivisions(true);
+      try {
+        const { data, error } = await supabase
+          .from('division')
+          .select('division_id, division_name')
+          .order('division_id', { ascending: true });
+        if (error) throw error;
+        setDivisions(data);
+      } catch (err) {
+        console.error('Error fetching divisions:', err);
+      } finally {
+        setLoadingDivisions(false);
+      }
+    };
+    fetchDivisions();
+  }, []);
 
-    const fetchDivisionAndWards = async () => {
+  // Fetch wards for the selected division
+  useEffect(() => {
+    if (!currentDivision) return;
+    const fetchWards = async () => {
       setLoadingWards(true);
       setWardsError(null);
-      
       try {
-        // First get the division_id for the current ward
-        const { data: wardData, error: wardError } = await supabase
-          .from('ward')
-          .select('division_id')
-          .eq('ward_id', metrics.ward_id)
-          .single();
-
-        if (wardError) throw wardError;
-        if (!wardData) return;
-
-        // Then get all wards in that division
-        const { data: wardsData, error: wardsError } = await supabase
+        const { data, error } = await supabase
           .from('ward')
           .select('ward_id, ward_name')
-          .eq('division_id', wardData.division_id)
+          .eq('division_id', currentDivision)
           .order('ward_name', { ascending: true });
-
-        if (wardsError) throw wardsError;
-        
-        setWards(wardsData);
-        setCurrentDivision(wardData.division_id);
+        if (error) throw error;
+        setWards(data);
+        // Auto-select first ward if none selected
+        if (data && data.length > 0 && !selectedWardId) {
+          setSelectedWardId(data[0].ward_id);
+          router.push(`/wards/${data[0].ward_id}`);
+        }
       } catch (err) {
-        console.error('Error fetching wards:', err);
         setWardsError(err.message);
       } finally {
         setLoadingWards(false);
       }
     };
+    fetchWards();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDivision]);
 
-    fetchDivisionAndWards();
+  // Set currentDivision and selectedWardId based on metrics.ward_id on mount or metrics change (for initial load)
+  useEffect(() => {
+    if (!metrics?.ward_id) return;
+    const fetchDivisionForWard = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('ward')
+          .select('division_id')
+          .eq('ward_id', metrics.ward_id)
+          .single();
+        if (error) throw error;
+        setCurrentDivision(data.division_id);
+        setSelectedWardId(metrics.ward_id);
+      } catch (err) {
+        // fallback: do nothing
+      }
+    };
+    fetchDivisionForWard();
   }, [metrics?.ward_id]);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
 
+  const handleDivisionChange = (divisionId) => {
+    setCurrentDivision(divisionId);
+    setWards([]);
+    setSelectedWardId(null);
+  };
+
   const handleWardChange = (wardId) => {
+    setSelectedWardId(wardId);
     router.push(`/wards/${wardId}`);
   };
 
@@ -108,7 +145,7 @@ export default function WardSidebar({
       className={`${styles.leftSidebar} ${isCollapsed ? styles.collapsed : ''}`}
       style={{ width: isCollapsed ? '50px' : `${sidebarWidth}px` }}
     >
-      {/* Logo and toggle button code remains the same */}
+      {/* Logo and toggle button */}
       <div className={styles.logoContainer} onClick={() => router.push('/')}>
         {!isCollapsed ? (
           <div className={styles.logoExpanded}>
@@ -132,49 +169,52 @@ export default function WardSidebar({
 
       {!isCollapsed && (
         <>
-          <div 
-            className={buttonStyles.resizeHandle}
-            onMouseDown={() => setIsResizing(true)}
-          />
-
-          <div className={cardStyles.metricBig}>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {!metrics && !error && <p>Loading...</p>}
-            {metrics && (
-              <>
-                <div className={styles.selector}>
-                  {loadingWards ? (
-                    <p>Ward</p>
-                  ) : wardsError ? (
-                    <p style={{ color: 'red' }}>Error loading wards: {wardsError}</p>
-                  ) : (
-                    <select
-                      id="ward-select"
-                      value={metrics.ward_id}
-                      onChange={(e) => handleWardChange(e.target.value)}
-                      className={styles.dropdown}
-                    >
-                      {wards.map((ward) => (
-                        <option key={ward.ward_id} value={ward.ward_id}>
-                          {ward.ward_name}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                </div>
-                <p>{metrics.total_roads} Actions Pending</p>
-                <p>{metrics.total_members} Ward Members</p>
-              </>
+          <div className={styles.selector}>
+            {/* Division Dropdown */}
+            {loadingDivisions ? (
+              <p>Loading divisions...</p>
+            ) : (
+              <select
+                id="division-select"
+                value={currentDivision || ''}
+                onChange={e => handleDivisionChange(e.target.value)}
+                className={styles.dropdown}
+              >
+                {divisions.map((division) => (
+                  <option key={division.division_id} value={division.division_id}>
+                    {division.division_name}
+                  </option>
+                ))}
+              </select>
+            )}
+            {/* Ward Dropdown */}
+            {loadingWards ? (
+              <p>Loading wards...</p>
+            ) : wardsError ? (
+              <p style={{ color: 'red' }}>Error loading wards: {wardsError}</p>
+            ) : (
+              <select
+                id="ward-select"
+                value={selectedWardId || ''}
+                onChange={e => handleWardChange(e.target.value)}
+                className={styles.dropdown}
+              >
+                {wards.map((ward) => (
+                  <option key={ward.ward_id} value={ward.ward_id}>
+                    {ward.ward_name}
+                  </option>
+                ))}
+              </select>
             )}
           </div>
 
-          {/* Tab buttons remain the same */}
+          {/* Tab buttons */}
           <div>
             <button
-              className={`${buttonStyles.tab} ${activeTab === 'action' ? buttonStyles.active : ''}`}
-              onClick={() => setActiveTab('action')}
+              className={`${buttonStyles.tab} ${activeTab === 'timeline' ? buttonStyles.active : ''}`}
+              onClick={() => setActiveTab('timeline')}
             >
-              Action
+              Timeline
             </button>
             <button
               className={`${buttonStyles.tab} ${activeTab === 'member' ? buttonStyles.active : ''}`}
@@ -183,20 +223,21 @@ export default function WardSidebar({
               Member
             </button>
             <button
-              className={`${buttonStyles.tab} ${activeTab === 'outcome' ? buttonStyles.active : ''}`}
-              onClick={() => setActiveTab('outcome')}
-            >
-              Outcome
-            </button>
-            <button
               className={`${buttonStyles.tab} ${activeTab === 'road' ? buttonStyles.active : ''}`}
               onClick={() => setActiveTab('road')}
             >
               Road
             </button>
             <button
+              className={`${buttonStyles.tab} ${activeTab === 'action' ? buttonStyles.active : ''}`}
+              onClick={() => setActiveTab('action')}
+            >
+              Action
+            </button>
+            <button
               className={`${buttonStyles.tab} ${activeTab === 'junction' ? buttonStyles.active : ''}`}
               onClick={() => setActiveTab('junction')}
+              disabled={isTabDisabled('junction')}
             >
               Junction
             </button>

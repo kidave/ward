@@ -1,17 +1,23 @@
 import styles from "../../../styles/components/card.module.css";
 import Image from "next/image";
 
+
+function getImageUrl(filename) {
+  if (!filename) return null;
+  return `https://gostxgfnoilfmybaohhx.supabase.co/storage/v1/object/public/profile/avatar/${filename}`;
+}
+
 export default function MemberTab({ members }) {
   return (
     <div className={styles.memberList}>
       {members.length === 0 ? (
-        <p>No members found.</p>
+        <p>Be a Member. Email us at info@walkingproject.org </p>
       ) : (
         members.map((member) => (
           <div key={member.member_id} className={styles.memberCard}>
             <div className={styles.memberImageContainer}>
               <Image
-                src={member.avatar_url || '/user.png'}
+                src={getImageUrl(member.avatar_url) || '/user.png'}
                 alt={member.member_name}
                 width={80}
                 height={80}
@@ -23,7 +29,7 @@ export default function MemberTab({ members }) {
               />
             </div>
             <h4>{member.member_name}</h4>
-            <p>Actions: {member.actions_taken}</p>
+            <p>{member.designation}</p>
           </div>
         ))
       )}

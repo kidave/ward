@@ -1,29 +1,27 @@
 .header {
-  background-color: #fcc700;
-  color: whitesmoke;
-  justify-content: space-between;
-  align-items: center;
+  background: linear-gradient(135deg, gold 0%, #fcc700 100%);
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.2);
   display: flex;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
 }
 
 .headerLeft {
   display: flex;
   align-items: center;
-  padding: 30px;
 }
 
 .headerRight {
   display: flex;
   align-items: center;
-  padding: 30px;
 }
 
 .logo {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
-  margin-right: 10px;
-  vertical-align: middle;
 }
 
 .logoButton {
@@ -48,3 +46,69 @@
   color: grey;
 }
 
+/* Outcome Header Styles */
+.timelineHeader {
+  background: linear-gradient(135deg, gold 0%, #fcc700 100%);
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.2);
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+
+.wardInfo h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.leadership {
+  display: flex;
+  gap: 1.5rem;
+  color: black;
+  font-style: italic;
+  align-items: center;
+}
+
+
+
+.timelineTitle {
+  text-align: right;
+  position: relative;
+}
+
+.timelineTitle h3 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.timelineTitle p {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  font-style: italic;
+  color: black;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .outcomeHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .wardInfo h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .timelineTitle {
+    text-align: center;
+  }
+  
+  .leadership {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
