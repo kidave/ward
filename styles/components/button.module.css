@@ -18,6 +18,11 @@
   background-color: whitesmoke;
 }
 
+.tab:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
 
 /* Toggle Button */
 
@@ -40,13 +45,21 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px 20px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .small:hover {
   background-color: whitesmoke;
+}
+
+.small.active {
+  background-color: whitesmoke;
+  color: grey;
+  font-weight: bold;
+  transform: translateY(-1px);
+  opacity: 1;
 }
 
 
