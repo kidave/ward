@@ -6,7 +6,7 @@ function formatDiscussionPoints(discussion) {
   return discussion.split(/\d+\./).filter(point => point.trim()).map(point => point.trim());
 }
 
-export default function useWardTimeline(wardId, wardName, enabled = true) {
+export default function useWardTimeline(wardId, enabled = true) {
   const [timeline, setTimeline] = useState([]);
   const [wardInfo, setWardInfo] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -19,6 +19,7 @@ export default function useWardTimeline(wardId, wardName, enabled = true) {
 
     (async () => {
       try {
+        // ✅ Fetch convenor and co-convenor
         const { data: committeeData } = await supabase
           .from('committee')
           .select('*')
@@ -33,6 +34,16 @@ export default function useWardTimeline(wardId, wardName, enabled = true) {
           .eq('is_co_convenor', true)
           .single();
 
+        // ✅ Fetch ward name
+        const { data: wardData, error: wardError } = await supabase
+          .from('ward')
+          .select('ward_name')
+          .eq('ward_id', wardId)
+          .single();
+
+        if (wardError) throw wardError;
+
+        // ✅ Fetch meetings and updates
         const { data: meeting, error: meetingError } = await supabase
           .from('meeting')
           .select('*')
@@ -47,6 +58,7 @@ export default function useWardTimeline(wardId, wardName, enabled = true) {
 
         if (meetingError || updateError) throw meetingError || updateError;
 
+        // ✅ Combine timeline data
         const combinedData = [
           ...(meeting?.map(meeting => ({
             id: `meeting-${meeting.meeting_id}`,
@@ -73,8 +85,9 @@ export default function useWardTimeline(wardId, wardName, enabled = true) {
 
         setTimeline(combinedData);
 
+        // ✅ Set wardInfo
         setWardInfo({
-          wardName: wardName || 'Unknown',
+          wardName: wardData?.ward_name || 'Unknown',
           convenor: committeeData?.member_name || 'Not assigned',
           coConvenor: coConvenorData?.member_name || 'Not assigned'
         });
@@ -85,7 +98,7 @@ export default function useWardTimeline(wardId, wardName, enabled = true) {
         setLoading(false);
       }
     })();
-  }, [wardId, wardName, enabled]);
+  }, [wardId, enabled]);
 
   return { timeline, wardInfo, loading, error };
 }

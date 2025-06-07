@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../utils/supabaseClient';
 
-export default function useWardRoads(wardId, enabled = true) {
-  const [roads, setRoads] = useState([]);
+export default function useWardCommittee(wardId) {
+  const [committee, setCommittee] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!wardId || !enabled) return;
+    if (!wardId) return;
     setLoading(true);
     setError(null);
+
     supabase
-      .from('roads')
+      .from('committee')
       .select('*')
       .eq('ward_id', wardId)
       .then(({ data, error }) => {
-        setRoads(data || []);
+        setCommittee(data || []);
         setError(error ? error.message : null);
         setLoading(false);
       });
-  }, [wardId, enabled]);
+  }, [wardId]);
 
-  return { roads, loading, error };
+  return { committee, loading, error };
 }

@@ -68,6 +68,13 @@
 }
 
 /* When sidebar is collapsed */
+.iconTabBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
 .leftSidebar.collapsed .logoExpanded {
   display: none;
 }

@@ -1,4 +1,7 @@
 .tab {
+  gap: 8px;
+  display: flex;
+  align-items: center;
   background: none;
   border: none;
   width: 90%;
@@ -8,6 +11,17 @@
   border-radius: 10px;
   text-align: left;
   cursor: pointer;
+}
+
+.tabIcon {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+}
+
+.tabText {
+  display: flex;
+  align-items: center;
 }
 
 .tab:hover {

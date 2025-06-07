@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MeetingDetails from './MeetingDetails';
 import UpdateDetails from './UpdateDetails';
@@ -18,21 +18,18 @@ function formatDate(date, type) {
   }
 }
 
-export default function TimelineItem({ item, isLast }) {
-  const [active, setActive] = useState(false);
+
+
+export default function TimelineItem({ item, isLast, autoExpand}) {
+  const [active, setActive] = useState(!!autoExpand);
+
+  useEffect(() => {
+    setActive(!!autoExpand);
+  } , [autoExpand]);
+
 
   return (
     <div className={styles.snakeTimelineItem}>
-      <div className={styles.timelineConnector}>
-        {!isLast && <div className={styles.connectorLine} />}
-        <div
-          className={`${styles.timelineIcon} ${active ? styles.activeIcon : ''}`}
-          onClick={() => setActive(!active)}
-          aria-label={active ? 'Collapse details' : 'Expand details'}
-        >
-          {getIcon(item)}
-        </div>
-      </div>
 
       <div
         className={styles.timelineDate}
