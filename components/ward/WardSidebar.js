@@ -111,7 +111,13 @@ export default function WardSidebar({
           .order('ward_name', { ascending: true });
         if (error) throw error;
         setWards(data);
-        // No auto-selection here — respect selectedWardId
+        // Auto-select first ward if available
+        if (data && data.length > 0) {
+          setSelectedWardId(data[0].ward_id);
+          router.push(`/wards/${data[0].ward_id}`);
+        } else {
+          setSelectedWardId(null);
+        }
       } catch (err) {
         setWardsError(err.message);
       } finally {
