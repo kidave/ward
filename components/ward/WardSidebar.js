@@ -4,11 +4,10 @@ import buttonStyles from '../../styles/components/button.module.css';
 import { useRouter } from 'next/router';
 import { supabase } from '../../utils/supabaseClient';
 import { IoFootsteps } from "react-icons/io5";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiClock, FiUsers, FiMap, FiCheckSquare, FiGitBranch, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export default function WardSidebar({ 
-  metrics, 
-  error, 
+  wardId, 
   activeTab, 
   setActiveTab,
   disabledTabs = []
@@ -75,7 +74,30 @@ export default function WardSidebar({
     fetchDivisions();
   }, []);
 
-  // Fetch wards for the selected division
+  // Fetch division and set selected ward on first mount or URL change
+  useEffect(() => {
+    if (!wardId) return;
+
+    const fetchDivisionForWard = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('ward')
+          .select('division_id')
+          .eq('ward_id', wardId)
+          .single();
+
+        if (error) throw error;
+        setCurrentDivision(data.division_id);
+        setSelectedWardId(wardId);
+      } catch (err) {
+        console.error('Error getting ward info:', err);
+      }
+    };
+
+    fetchDivisionForWard();
+  }, [wardId]);
+
+  // Fetch wards when current division is set
   useEffect(() => {
     if (!currentDivision) return;
     const fetchWards = async () => {
@@ -89,11 +111,7 @@ export default function WardSidebar({
           .order('ward_name', { ascending: true });
         if (error) throw error;
         setWards(data);
-        // Auto-select first ward if none selected
-        if (data && data.length > 0 && !selectedWardId) {
-          setSelectedWardId(data[0].ward_id);
-          router.push(`/wards/${data[0].ward_id}`);
-        }
+        // No auto-selection here — respect selectedWardId
       } catch (err) {
         setWardsError(err.message);
       } finally {
@@ -101,28 +119,7 @@ export default function WardSidebar({
       }
     };
     fetchWards();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDivision]);
-
-  // Set currentDivision and selectedWardId based on metrics.ward_id on mount or metrics change (for initial load)
-  useEffect(() => {
-    if (!metrics?.ward_id) return;
-    const fetchDivisionForWard = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('ward')
-          .select('division_id')
-          .eq('ward_id', metrics.ward_id)
-          .single();
-        if (error) throw error;
-        setCurrentDivision(data.division_id);
-        setSelectedWardId(metrics.ward_id);
-      } catch (err) {
-        // fallback: do nothing
-      }
-    };
-    fetchDivisionForWard();
-  }, [metrics?.ward_id]);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
@@ -167,7 +164,7 @@ export default function WardSidebar({
         {isCollapsed ? <FiChevronRight className={styles.logoIcon} /> : <FiChevronLeft className={styles.logoIcon} />}
       </button>
 
-      {!isCollapsed && (
+      {!isCollapsed ? (
         <>
           <div className={styles.selector}>
             {/* Division Dropdown */}
@@ -187,11 +184,12 @@ export default function WardSidebar({
                 ))}
               </select>
             )}
+
             {/* Ward Dropdown */}
             {loadingWards ? (
               <p>Loading wards...</p>
             ) : wardsError ? (
-              <p style={{ color: 'red' }}>Error loading wards: {wardsError}</p>
+              <p>Error loading wards: {wardsError}</p>
             ) : (
               <select
                 id="ward-select"
@@ -208,41 +206,86 @@ export default function WardSidebar({
             )}
           </div>
 
-          {/* Tab buttons */}
+          {/* Tab buttons (expanded) */}
           <div>
             <button
               className={`${buttonStyles.tab} ${activeTab === 'timeline' ? buttonStyles.active : ''}`}
               onClick={() => setActiveTab('timeline')}
             >
-              Timeline
+              <span className={buttonStyles.tabIcon}><FiClock /></span>
+              <span className={buttonStyles.tabText}>Timeline</span>
             </button>
             <button
               className={`${buttonStyles.tab} ${activeTab === 'member' ? buttonStyles.active : ''}`}
               onClick={() => setActiveTab('member')}
             >
-              Member
+              <span className={buttonStyles.tabIcon}><FiUsers /></span>
+              <span className={buttonStyles.tabText}>Member</span>
             </button>
             <button
               className={`${buttonStyles.tab} ${activeTab === 'road' ? buttonStyles.active : ''}`}
               onClick={() => setActiveTab('road')}
             >
-              Road
+              <span className={buttonStyles.tabIcon}><FiMap /></span>
+              <span className={buttonStyles.tabText}>Road</span>
             </button>
             <button
               className={`${buttonStyles.tab} ${activeTab === 'action' ? buttonStyles.active : ''}`}
               onClick={() => setActiveTab('action')}
             >
-              Action
+              <span className={buttonStyles.tabIcon}><FiCheckSquare /></span>
+              <span className={buttonStyles.tabText}>Action</span>
             </button>
             <button
               className={`${buttonStyles.tab} ${activeTab === 'junction' ? buttonStyles.active : ''}`}
               onClick={() => setActiveTab('junction')}
               disabled={isTabDisabled('junction')}
             >
-              Junction
+              <span className={buttonStyles.tabIcon}><FiGitBranch /></span>
+              <span className={buttonStyles.tabText}>Junction</span>
             </button>
           </div>
         </>
+      ) : (
+        // Collapsed: icon-only tab buttons
+        <div className={styles.iconTabBar}>
+          <button
+            className={`${buttonStyles.tab} ${activeTab === 'timeline' ? buttonStyles.active : ''}`}
+            onClick={() => setActiveTab('timeline')}
+            title="Timeline"
+          >
+            <FiClock />
+          </button>
+          <button
+            className={`${buttonStyles.tab} ${activeTab === 'member' ? buttonStyles.active : ''}`}
+            onClick={() => setActiveTab('member')}
+            title="Member"
+          >
+            <FiUsers />
+          </button>
+          <button
+            className={`${buttonStyles.tab} ${activeTab === 'road' ? buttonStyles.active : ''}`}
+            onClick={() => setActiveTab('road')}
+            title="Road"
+          >
+            <FiMap />
+          </button>
+          <button
+            className={`${buttonStyles.tab} ${activeTab === 'action' ? buttonStyles.active : ''}`}
+            onClick={() => setActiveTab('action')}
+            title="Action"
+          >
+            <FiCheckSquare />
+          </button>
+          <button
+            className={`${buttonStyles.tab} ${activeTab === 'junction' ? buttonStyles.active : ''}`}
+            onClick={() => setActiveTab('junction')}
+            disabled={isTabDisabled('junction')}
+            title="Junction"
+          >
+            <FiGitBranch />
+          </button>
+        </div>
       )}
     </div>
   );

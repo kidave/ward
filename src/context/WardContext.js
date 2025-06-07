@@ -1,16 +1,29 @@
-import { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
+import { 
+  useWardMetrics, 
+  useWardTimeline, 
+  useWardActions, 
+  useWardMembers, 
+  useWardRoads 
+} from '../hooks';
 
 const WardContext = createContext();
 
 export function WardProvider({ children, wardId }) {
-  // Use our custom hook to manage all ward data
-  const wardData = wardData(wardId);
+  const metrics = useWardMetrics(wardId);
+  const timeline = useWardTimeline(wardId);
+  const members = useWardMembers(wardId);
+  const roads = useWardRoads(wardId);
+  const actions = useWardActions(wardId);
 
-  // Memoize the context value to optimize performance
   const contextValue = useMemo(() => ({
-    ...wardData,
-    wardId
-  }), [wardData, wardId]);
+    wardId,
+    metrics,
+    timeline,
+    members,
+    roads,
+    actions,
+  }), [wardId, metrics, timeline, members, roads, actions]);
 
   return (
     <WardContext.Provider value={contextValue}>
@@ -19,10 +32,9 @@ export function WardProvider({ children, wardId }) {
   );
 }
 
-// Custom hook for consuming the context
 export function useWard() {
   const context = useContext(WardContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useWard must be used within a WardProvider');
   }
   return context;

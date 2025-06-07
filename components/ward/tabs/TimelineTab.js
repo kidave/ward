@@ -64,6 +64,7 @@ export default function TimelineTab({ timelines, wardInfo }) {
             item={item} 
             index={index} 
             isLast={index === filteredTimeline.length - 1}
+            autoExpand={index === 0}
           />
         ))}
       </div>

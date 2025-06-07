@@ -5,6 +5,8 @@ import ActionTableFilters from './ActionTableFilters';
 import tableStyles from '../../../../styles/components/table.module.css';
 import cellStyles from '../../../../styles/components/cell.module.css';
 import { supabase } from '../../../../utils/supabaseClient';
+import { FiChevronsLeft, FiChevronLeft, FiChevronRight, FiChevronsRight } from 'react-icons/fi';
+
 
 export default function ActionTable({ actions = [] }) {
   const [columnWidths, setColumnWidths] = useState({
@@ -73,12 +75,29 @@ export default function ActionTable({ actions = [] }) {
     return sortableItems;
   }, [actions, sortConfig, filters]);
 
+    // --- Pagination logic ---
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const totalPages = Math.max(1, Math.ceil(sortedItems.length / itemsPerPage));
+
+  // Reset to page 1 if filters or actions change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [actions, filters]);
+
   const paginatedItems = sortedItems.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  // --- Pagination controls ---
+  const handlePageInput = (e) => {
+    let val = Number(e.target.value);
+    if (isNaN(val)) return;
+    if (val < 1) val = 1;
+    if (val > totalPages) val = totalPages;
+    setCurrentPage(val);
+  };
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -97,6 +116,7 @@ export default function ActionTable({ actions = [] }) {
       [key]: value
     }));
   };
+
 
   return (
     <div className={tableStyles.wrapper}>
@@ -188,7 +208,53 @@ export default function ActionTable({ actions = [] }) {
           ))}
         </tbody>
       </Table>
-      {/* Pagination controls can go here */}
+      <div className={tableStyles.pagination}>
+        <span
+          className={`${tableStyles.arrow} ${currentPage === 1 ? tableStyles.disabled : ''}`}
+          onClick={() => currentPage > 1 && setCurrentPage(1)}
+          title="First Page"
+          aria-disabled={currentPage === 1}
+        >
+          <FiChevronsLeft />
+        </span>
+        <span
+          className={`${tableStyles.arrow} ${currentPage === 1 ? tableStyles.disabled : ''}`}
+          onClick={() => currentPage > 1 && setCurrentPage((p) => Math.max(1, p - 1))}
+          title="Previous Page"
+          aria-disabled={currentPage === 1}
+        >
+          <FiChevronLeft />
+        </span>
+        <span className={tableStyles.pageInputWrapper}>
+          <span className={tableStyles.pageInputLabel}>Page</span>
+          <input
+            type="number"
+            min={1}
+            max={totalPages}
+            value={currentPage}
+            onChange={handlePageInput}
+            className={tableStyles.pageInput}
+          />
+          <span className={tableStyles.pageInputLabel}>of</span>
+          <span className={tableStyles.pageInputNumber}>{totalPages}</span>
+        </span>
+        <span
+          className={`${tableStyles.arrow} ${currentPage === totalPages ? tableStyles.disabled : ''}`}
+          onClick={() => currentPage < totalPages && setCurrentPage((p) => Math.min(totalPages, p + 1))}
+          title="Next Page"
+          aria-disabled={currentPage === totalPages}
+        >
+          <FiChevronRight />
+        </span>
+        <span
+          className={`${tableStyles.arrow} ${currentPage === totalPages ? tableStyles.disabled : ''}`}
+          onClick={() => currentPage < totalPages && setCurrentPage(totalPages)}
+          title="Last Page"
+          aria-disabled={currentPage === totalPages}
+        >
+          <FiChevronsRight />
+        </span>
+      </div>
     </div>
   );
 }

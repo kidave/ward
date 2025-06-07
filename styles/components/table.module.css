@@ -39,13 +39,14 @@
 }
 
 
+
+
 .table td {
   padding: 5px 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-bottom: 1px solid #eaeaea;
-  border-right: 1px solid #eaeaea;
+  border: whitesmoke 1px solid;
   vertical-align: middle;
   word-break: keep-all;
   max-width: 300px;
@@ -112,3 +113,59 @@
   border-top: 5px solid white;
 }
 
+.pagination {
+  display: flex;
+  padding: 5px;
+  background-color: whitesmoke;
+}
+
+.arrow {
+  color: black;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+  gap: 2px;
+  padding: 2px 5px;
+}
+.arrow:hover:not(.disabled) {
+  color: blue;
+  background: lightcyan;
+  border-radius: 5px;
+}
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.pageInput {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+}
+
+.pageInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 10px;
+  font-size: 12px;
+  color: grey;
+}
+
+.pageInputLabel {
+  color: grey;
+  font-weight: 500;
+  margin-right: 2px;
+}
+
+.pageInputNumber {
+  font-weight: bold;
+  color: grey;
+}
+
+.pageInputTotal {
+  color: grey;
+  margin-left: 2px;
+}
