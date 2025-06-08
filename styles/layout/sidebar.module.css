@@ -10,10 +10,94 @@
   width: 70px;
 }
 
-.leftSidebar.collapsed .toggle {
+
+.resizeHandle {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: transparent;
+  cursor: col-resize;
+  z-index: 5;
+}
+
+
+.toggle {
+  position: absolute;
+  background-color: rgb(254, 255, 240);
+  border: none;
+  top: 5px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.tab {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  width: 90%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: grey;
+  text-align: left;
+  cursor: pointer;
+}
+
+
+.tabIcon {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+
+.tabText {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+
+.tab:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+
+.tab.active {
+  background-color: lightgoldenrodyellow;
+}
+
+.tab:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
+.iconTabBar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.leftSidebar.collapsed .iconTabBar .tab svg {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+
+.leftSidebar.collapsed .iconTabBar .tabText {
+  display: none;
 }
 
 
@@ -33,13 +117,6 @@
   justify-content: center;
 }
 
-.logoText {
-  padding: 5px;
-  margin-left: 15px;
-  color: grey;
-  font-weight: bold;
-  text-align: left;
-}
 
 .logoText:hover {
   cursor: pointer;
@@ -69,23 +146,10 @@
 }
 
 /* When sidebar is collapsed */
-.iconTabBar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
-}
 
 
 
-.leftSidebar.collapsed .logoExpanded {
-  display: none;
-}
 
-/* When sidebar is expanded */
-.leftSidebar:not(.collapsed) .logoCollapsed {
-  display: none;
-}
 
 
 /* Add these to your existing sidebar.module.css */
@@ -116,20 +180,4 @@
   padding: 0.5rem;
 }
 
-.toggle {
-  position: absolute;
-  background-color: rgb(254, 255, 240);
-  top: 5px;
-  right: 10px;
-  border: none;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 10;
-}
 
-
-.toggleCollapsed {
-  display: flex;
-  left: 15px;
-}
