@@ -79,7 +79,7 @@ function Region() {
         {cities.map((city) => (
           <button
             key={city.city_id}
-            className={`${buttonStyles.big} ${
+            className={`${buttonStyles.btnBig} ${
               selectedCity === city.city_id ? buttonStyles.active : ''
             }`}
             onClick={() => handleCityClick(city.city_id)}
@@ -95,7 +95,7 @@ function Region() {
           {divisions.map((division) => (
             <button
               key={division.division_id}
-              className={`${buttonStyles.medium} ${
+              className={`${buttonStyles.btnMedium} ${
                 selectedDivision === division.division_id ? buttonStyles.active : ''
               }`}
               onClick={() => handleDivisionClick(division.division_id)}
@@ -112,7 +112,7 @@ function Region() {
           {wards.map((ward) => (
             <button
               key={ward.ward_id}
-              className={buttonStyles.small}
+              className={buttonStyles.btnSmall}
               onClick={() => goToWardDetail(ward.ward_id)}
             >
               {ward.ward_name}

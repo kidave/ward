@@ -7,4 +7,24 @@
   --border-radius: 20px;
   --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
+  --font-main: system-ui, -apple-system, sans-serif;
+  --font-size-base: 16px;  
 }
+
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+h1 { font-size: 2rem; font-weight: 600; }
+h2 { font-size: 1.75rem; font-weight: 600; }
+h3 { font-size: 1.5rem; font-weight: 600; }
+h4 { font-size: 1.25rem; font-weight: 600; }
+h5 { font-size: 1.1rem; font-weight: 600; }
+h6 { font-size: 1rem; font-weight: 600; }
+
+.small-text { font-size: 0.875rem; }
+.caption { font-size: 0.75rem; color: var(--text-light); }

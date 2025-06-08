@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from '../../styles/layout/sidebar.module.css';
-import buttonStyles from '../../styles/components/button.module.css';
 import { useRouter } from 'next/router';
 import { supabase } from '../../utils/supabaseClient';
 import { IoFootsteps } from "react-icons/io5";
@@ -149,22 +148,30 @@ export default function WardSidebar({
       style={{ width: isCollapsed ? '70px' : `${sidebarWidth}px` }}
     >
       {/* Logo and toggle button */}
-      <div className={styles.logoContainer} onClick={() => router.push('/')}>
+      <div
+        className={styles.logoContainer}
+        onClick={() => router.push('/')}
+        aria-label="Home"
+        role="button"
+        tabIndex={0}
+        title="Home"
+      >
         {!isCollapsed ? (
           <div className={styles.logoExpanded}>
-            <span className={styles.logoText}>Walking Project</span>
+            <img src="/wp_text_logo.png" alt="Ward" className={styles.logoText} />
           </div>
         ) : (
           <div className={styles.logoCollapsed}>
-            <IoFootsteps className={styles.logoIcon} />
+            <IoFootsteps className={styles.logoIcon} aria-label="Walking Project" />
           </div>
         )}
       </div>
 
       <button 
-        className={`${styles.toggle} ${isCollapsed ? styles.toggleCollapsed : ''}`}
+        className={`${styles.toggle} ${isCollapsed ? styles.toggle : ''}`}
         onClick={toggleSidebar}
         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >
         {isCollapsed ? <FiChevronRight className={styles.logoIcon} /> : <FiChevronLeft className={styles.logoIcon} />}
       </button>
@@ -214,40 +221,40 @@ export default function WardSidebar({
           {/* Tab buttons (expanded) */}
           <div>
             <button
-              className={`${buttonStyles.tab} ${activeTab === 'timeline' ? buttonStyles.active : ''}`}
+              className={`${styles.tab} ${activeTab === 'timeline' ? styles.active : ''}`}
               onClick={() => setActiveTab('timeline')}
             >
-              <span className={buttonStyles.tabIcon}><FiClock /></span>
-              <span className={buttonStyles.tabText}>Timeline</span>
+              <span className={styles.tabIcon}><FiClock /></span>
+              <span className={styles.tabText}>Timeline</span>
             </button>
             <button
-              className={`${buttonStyles.tab} ${activeTab === 'member' ? buttonStyles.active : ''}`}
+              className={`${styles.tab} ${activeTab === 'member' ? styles.active : ''}`}
               onClick={() => setActiveTab('member')}
             >
-              <span className={buttonStyles.tabIcon}><FiUsers /></span>
-              <span className={buttonStyles.tabText}>Member</span>
+              <span className={styles.tabIcon}><FiUsers /></span>
+              <span className={styles.tabText}>Member</span>
             </button>
             <button
-              className={`${buttonStyles.tab} ${activeTab === 'road' ? buttonStyles.active : ''}`}
+              className={`${styles.tab} ${activeTab === 'road' ? styles.active : ''}`}
               onClick={() => setActiveTab('road')}
             >
-              <span className={buttonStyles.tabIcon}><FiMap /></span>
-              <span className={buttonStyles.tabText}>Road</span>
+              <span className={styles.tabIcon}><FiMap /></span>
+              <span className={styles.tabText}>Road</span>
             </button>
             <button
-              className={`${buttonStyles.tab} ${activeTab === 'action' ? buttonStyles.active : ''}`}
+              className={`${styles.tab} ${activeTab === 'action' ? styles.active : ''}`}
               onClick={() => setActiveTab('action')}
             >
-              <span className={buttonStyles.tabIcon}><FiCheckSquare /></span>
-              <span className={buttonStyles.tabText}>Action</span>
+              <span className={styles.tabIcon}><FiCheckSquare /></span>
+              <span className={styles.tabText}>Action</span>
             </button>
             <button
-              className={`${buttonStyles.tab} ${activeTab === 'junction' ? buttonStyles.active : ''}`}
+              className={`${styles.tab} ${activeTab === 'junction' ? styles.active : ''}`}
               onClick={() => setActiveTab('junction')}
               disabled={isTabDisabled('junction')}
             >
-              <span className={buttonStyles.tabIcon}><FiGitBranch /></span>
-              <span className={buttonStyles.tabText}>Junction</span>
+              <span className={styles.tabIcon}><FiGitBranch /></span>
+              <span className={styles.tabText}>Junction</span>
             </button>
           </div>
         </>
@@ -255,35 +262,35 @@ export default function WardSidebar({
         // Collapsed: icon-only tab buttons
         <div className={styles.iconTabBar}>
           <button
-            className={`${buttonStyles.tab} ${activeTab === 'timeline' ? buttonStyles.active : ''}`}
+            className={`${styles.tab} ${activeTab === 'timeline' ? styles.active : ''}`}
             onClick={() => setActiveTab('timeline')}
             title="Timeline"
           >
             <FiClock />
           </button>
           <button
-            className={`${buttonStyles.tab} ${activeTab === 'member' ? buttonStyles.active : ''}`}
+            className={`${styles.tab} ${activeTab === 'member' ? styles.active : ''}`}
             onClick={() => setActiveTab('member')}
             title="Member"
           >
             <FiUsers />
           </button>
           <button
-            className={`${buttonStyles.tab} ${activeTab === 'road' ? buttonStyles.active : ''}`}
+            className={`${styles.tab} ${activeTab === 'road' ? styles.active : ''}`}
             onClick={() => setActiveTab('road')}
             title="Road"
           >
             <FiMap />
           </button>
           <button
-            className={`${buttonStyles.tab} ${activeTab === 'action' ? buttonStyles.active : ''}`}
+            className={`${styles.tab} ${activeTab === 'action' ? styles.active : ''}`}
             onClick={() => setActiveTab('action')}
             title="Action"
           >
             <FiCheckSquare />
           </button>
           <button
-            className={`${buttonStyles.tab} ${activeTab === 'junction' ? buttonStyles.active : ''}`}
+            className={`${styles.tab} ${activeTab === 'junction' ? styles.active : ''}`}
             onClick={() => setActiveTab('junction')}
             disabled={isTabDisabled('junction')}
             title="Junction"
