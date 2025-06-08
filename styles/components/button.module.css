@@ -1,58 +1,3 @@
-.tab {
-  gap: 8px;
-  display: flex;
-  align-items: center;
-  background: none;
-  border: none;
-  width: 90%;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: left;
-  cursor: pointer;
-}
-
-.tabIcon {
-  display: flex;
-  align-items: center;
-  font-size: 1.1em;
-}
-
-.tabText {
-  display: flex;
-  align-items: center;
-}
-
-.tab:hover {
-  background-color: whitesmoke;
-}
-
-.tab.active {
-  background-color: whitesmoke;
-}
-
-.tab:disabled {
-  opacity: 0;
-  cursor: default;
-}
-
-
-/* Toggle Button */
-
-.toggle {
-  position: absolute;
-  background-color: white;
-  top: 5px;
-  right: 5px;
-  border: none;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  z-index: 10;
-}
-
-
 .small {
   background-color: white;
   color: grey;
@@ -150,7 +95,7 @@
 }
 
 .wide:hover {
-  background-color: whitesmoke; 
+  background-color: white; 
 }
 
 
@@ -163,4 +108,48 @@
   background: transparent;
   cursor: col-resize;
   z-index: 5;
+}
+
+
+.tab {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  width: 90%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: grey;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tabIcon {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+
+.tabText {
+  display: flex;
+  align-items: center;
+}
+
+
+.tab:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+
+.tab.active {
+  background-color: lightgoldenrodyellow;
+}
+
+.tab:disabled {
+  opacity: 0;
+  cursor: default;
 }

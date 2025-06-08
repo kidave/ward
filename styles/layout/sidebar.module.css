@@ -1,13 +1,13 @@
 .leftSidebar {
-  background-color: white;
+  background-color: rgb(254, 255, 240);
   width: 250px;
-  border-right: 1px solid gold;
   position: relative;
   transition: width 0.3s ease;
 }
 
 .leftSidebar.collapsed {
   overflow: hidden;
+  width: 70px;
 }
 
 .leftSidebar.collapsed .toggle {
@@ -21,6 +21,7 @@
 .logoContainer {
   padding: 10px 0;
   text-align: center;
+  background-color: rgb(254, 255, 240);
 }
 
 .logoIcon {
@@ -75,6 +76,8 @@
   margin-top: 40px;
 }
 
+
+
 .leftSidebar.collapsed .logoExpanded {
   display: none;
 }
@@ -97,8 +100,8 @@
   padding: 0.5rem;
   font-size: 1rem;
   border: none;
-  background-color: white;
   color: grey;
+  background-color: rgb(254, 255, 240);
 }
 
 .dropdown:hover {
@@ -113,3 +116,20 @@
   padding: 0.5rem;
 }
 
+.toggle {
+  position: absolute;
+  background-color: rgb(254, 255, 240);
+  top: 5px;
+  right: 10px;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+.toggleCollapsed {
+  display: flex;
+  left: 15px;
+}
