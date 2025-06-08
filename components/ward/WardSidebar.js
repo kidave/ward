@@ -146,13 +146,12 @@ export default function WardSidebar({
     <div 
       ref={sidebarRef}
       className={`${styles.leftSidebar} ${isCollapsed ? styles.collapsed : ''}`}
-      style={{ width: isCollapsed ? '50px' : `${sidebarWidth}px` }}
+      style={{ width: isCollapsed ? '70px' : `${sidebarWidth}px` }}
     >
       {/* Logo and toggle button */}
       <div className={styles.logoContainer} onClick={() => router.push('/')}>
         {!isCollapsed ? (
           <div className={styles.logoExpanded}>
-            <IoFootsteps className={styles.logoIcon} />
             <span className={styles.logoText}>Walking Project</span>
           </div>
         ) : (
@@ -163,7 +162,7 @@ export default function WardSidebar({
       </div>
 
       <button 
-        className={`${buttonStyles.toggle} ${isCollapsed ? buttonStyles.toggleCollapsed : ''}`}
+        className={`${styles.toggle} ${isCollapsed ? styles.toggleCollapsed : ''}`}
         onClick={toggleSidebar}
         aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
       >

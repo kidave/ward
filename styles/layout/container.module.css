@@ -31,7 +31,6 @@
 
 .wardContent {
   flex: 1;
-  border-left: 1px solid gold;
   overflow-x: auto;
   width: 100%;
 }
