@@ -15,8 +15,6 @@ export default function ActionTable({ actions = [] }) {
     priority: 120,
     status: 120,
     event_date: 150,
-    landmark_start: 150,
-    landmark_end: 150,
     reference_image: 120
   });
 
@@ -25,9 +23,7 @@ export default function ActionTable({ actions = [] }) {
     action_type: '',
     description: '',
     priority: '',
-    status: '',
-    landmark_start: '',
-    landmark_end: '',
+    status: ''
   });
 
 
@@ -167,22 +163,6 @@ export default function ActionTable({ actions = [] }) {
               <ResizableColumn
                 columnKey="status"
                 currentWidth={columnWidths.status}
-                onResize={setColumnWidths}
-              />
-            </TableHeader>
-            <TableHeader width={columnWidths.landmark_start}>
-              Landmark Start
-              <ResizableColumn
-                columnKey="landmark_start"
-                currentWidth={columnWidths.landmark_start}
-                onResize={setColumnWidths}
-              />
-            </TableHeader>
-            <TableHeader width={columnWidths.landmark_end}>
-              Landmark End
-              <ResizableColumn
-                columnKey="landmark_end"
-                currentWidth={columnWidths.landmark_end}
                 onResize={setColumnWidths}
               />
             </TableHeader>

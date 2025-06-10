@@ -11,16 +11,52 @@
 }
 
 
-.resizeHandle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 10px;
-  height: 100%;
-  background: transparent;
-  cursor: col-resize;
-  z-index: 5;
+
+
+.logoContainer {
+  padding: 10px 0;
+  text-align: center;
+  background-color: rgb(254, 255, 240);
 }
+
+.logoExpanded {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logoText {
+  
+  width: 160px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.logoText:hover {
+  cursor: pointer;
+}
+
+
+.logoCollapsed {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.logoCollapsed:hover {
+  cursor: pointer;
+}
+
+.logoIcon {
+  width: 30px;
+  height: 30px;
+  color: #fcc700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
 
 .toggle {
@@ -36,123 +72,8 @@
 }
 
 
-.tab {
-  gap: 8px;
-  display: flex;
-  align-items: center;
-  background: none;
-  border: none;
-  width: 90%;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  color: grey;
-  text-align: left;
-  cursor: pointer;
-}
 
 
-.tabIcon {
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-}
-
-
-.tabText {
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-}
-
-
-.tab:hover {
-  background-color: lightgoldenrodyellow;
-}
-
-
-.tab.active {
-  background-color: lightgoldenrodyellow;
-}
-
-.tab:disabled {
-  opacity: 0;
-  cursor: default;
-}
-
-.iconTabBar {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  margin-right: 5px;
-}
-
-.leftSidebar.collapsed .iconTabBar .tab svg {
-  font-size: 20px;
-  width: 20px;
-  height: 20px;
-  padding: 5px;
-}
-
-.leftSidebar.collapsed .iconTabBar .tabText {
-  display: none;
-}
-
-
-/* Logo Styles */
-.logoContainer {
-  padding: 10px 0;
-  text-align: center;
-  background-color: rgb(254, 255, 240);
-}
-
-.logoIcon {
-  width: 30px;
-  height: 30px;
-  color: #fcc700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.logoText:hover {
-  cursor: pointer;
-}
-
-.logoExpanded {
-  display: flex;
-  justify-content: left;
-  margin-left: 20px;
-  transition: all 0.3s ease;
-}
-
-.logoExpanded:hover {
-  cursor: pointer;
-}
-
-
-.logoCollapsed {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  transition: all 0.3s ease;
-}
-
-.logoCollapsed:hover {
-  cursor: pointer;
-}
-
-/* When sidebar is collapsed */
-
-
-
-
-
-
-/* Add these to your existing sidebar.module.css */
 .selector {
   padding: 10px;
   align-items: center;
@@ -161,6 +82,7 @@
 }
 
 .dropdown {
+  font-family: Cambria, serif;
   padding: 0.5rem;
   font-size: 1rem;
   border: none;
@@ -181,3 +103,77 @@
 }
 
 
+
+
+.tab {
+  font-family: Cambria, serif;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  width: 90%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: grey;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+
+.tab.active {
+  background-color: lightgoldenrodyellow;
+}
+
+.tab:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
+
+.tabIcon {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.tabText {
+  font-family: Cambria, serif;
+  font-size: 1rem;
+  color: grey;
+}
+
+
+.iconTabBar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.iconTabBar .tab {
+  display: flex;
+  margin-top: 10px;
+  font-size: 35px;
+  width: 35px;
+  height: 35px;
+}
+
+
+.resizeHandle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 100%;
+  background: transparent;
+  cursor: col-resize;
+  z-index: 5;
+}

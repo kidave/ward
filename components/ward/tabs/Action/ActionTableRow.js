@@ -26,8 +26,6 @@ export default function ActionTableRow({ action, setSelectedImage, setIsImageMod
           {action.status}
         </span>
       </TableCell>
-      <TableCell>{action.landmark_start}</TableCell>
-      <TableCell>{action.landmark_end}</TableCell>
       <TableCell>
         {action.reference_image ? (
           <button

@@ -34,7 +34,7 @@
 }
 
 .memberCard {
-  background-color: gold;
+  background-color: whitesmoke;
   padding: 20px;
   border-radius: 20px;
   border: none;
@@ -52,7 +52,6 @@
   height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 10px;
 }
 
 .memberImage {
@@ -62,3 +61,46 @@
 }
 
 
+/* styles/components/hoverCard.module.css */
+.hoverCard {
+  position: fixed;
+  z-index: 1000;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  max-width: 300px;
+  transform: translateY(10px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(10px); }
+}
+
+.cardContent {
+  color: #333;
+  line-height: 1.5;
+}
+
+.cardContent p {
+  margin: 8px 0;
+}
+
+.closeButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0 5px;
+}
+
+.closeButton:hover {
+  color: #333;
+}

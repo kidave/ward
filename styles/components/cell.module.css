@@ -67,3 +67,28 @@
   color: #0066cc;
   font: inherit;
 }
+
+
+/* styles/components/cell.module.css */
+.clickableDescription {
+  cursor: pointer;
+  padding: 8px;
+  position: relative;
+  transition: all 0.2s;
+  border-radius: 4px;
+}
+
+.clickableDescription:hover {
+  background-color: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.clickableDescription:active {
+  background-color: #ebebeb;
+}
+
+.button:hover {
+  background-color: #0069d9;
+}
+
+

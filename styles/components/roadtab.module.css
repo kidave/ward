@@ -87,28 +87,26 @@
 }
 
 .roadButton {
+  font-family: Cambria, serif;
   width: 100%;
   text-align: left;
-  border: 1px solid #eee;
-  border-radius: 8px;
+  border: none;
+  border-radius: 5px;
   padding: 7px 10px;
   font-weight: 500;
   font-size: 0.95em;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-  background: white;
-  transition: box-shadow 0.2s;
+  background: #fafafa;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .roadButton:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  background: #fffbe6;
+  background: lightgoldenrodyellow;
 }
 
 .roadName {
-  color: #222;
+  color: black;
 }
 
 .roadSegments {
@@ -120,20 +118,4 @@
   color: grey;
   text-align: center;
   margin: 2rem 0;
-}
-
-.moreFclass {
-  display: flex;
-  align-items: center;
-  color: #888;
-  font-size: 0.95em;
-  padding: 8px;
-}
-
-
-.moreRoads {
-  color: #888;
-  font-size: 0.95em;
-  text-align: center;
-  padding: 6px 0;
 }
