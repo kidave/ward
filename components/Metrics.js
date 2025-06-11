@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import styles from '../styles/components/card.module.css';
+import { FaChartBar } from 'react-icons/fa';
 
 function Metrics() {
   const [metrics, setMetrics] = useState([]);
@@ -22,13 +23,19 @@ function Metrics() {
   }, []);
 
   return (
-    <div className={styles.metrics}>
-      {metrics.map((m, i) => (
-        <div className={styles.metricSmall} key={i}>
-          <div className={styles.number}>{m.number}</div>
-          <div className={styles.label}>{m.label}</div>
-        </div>
-      ))}
+    <div className={styles.metricsFloatingCard}>
+      <div className={styles.metricsHeader}>
+        <FaChartBar className={styles.metricsIcon} />
+        <span>Project Metrics</span>
+      </div>
+      <div className={styles.metricsList}>
+        {metrics.map((m, i) => (
+          <div className={styles.metricSmall} key={i}>
+            <div className={styles.number}>{m.number}</div>
+            <div className={styles.label}>{m.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

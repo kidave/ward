@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabaseClient';
 import containerStyles from '../styles/layout/container.module.css';
 import buttonStyles from '../styles/components/button.module.css';
+import { FaCity, FaMap, FaMapPin } from 'react-icons/fa';
 
 function Region() {
   const [cities, setCities] = useState([]);
@@ -74,7 +75,12 @@ function Region() {
 
   return (
     <div className={containerStyles.regionContainer}>
-      {/* Cities */}
+
+      {/* Section Titles with Icons */}
+      <div className={containerStyles.sectionTitle}>
+        <FaCity className={containerStyles.sectionIcon} />
+        <span>Select Your City</span>
+      </div>
       <div className={containerStyles.cityContainer}>
         {cities.map((city) => (
           <button
@@ -84,41 +90,54 @@ function Region() {
             }`}
             onClick={() => handleCityClick(city.city_id)}
           >
+            
             {city.city_name}
           </button>
         ))}
       </div>
 
-      {/* Divisions */}
       {selectedCity && (
-        <div className={containerStyles.divisionContainer}>
-          {divisions.map((division) => (
-            <button
-              key={division.division_id}
-              className={`${buttonStyles.btnMedium} ${
-                selectedDivision === division.division_id ? buttonStyles.active : ''
-              }`}
-              onClick={() => handleDivisionClick(division.division_id)}
-            >
-              {division.division_name}
-            </button>
-          ))}
-        </div>
+        <>
+          <div className={containerStyles.sectionTitle}>
+            <FaMap className={containerStyles.sectionIcon} />
+            <span>Select Division</span>
+          </div>
+          <div className={containerStyles.divisionContainer}>
+            {divisions.map((division) => (
+              <button
+                key={division.division_id}
+                className={`${buttonStyles.btnMedium} ${
+                  selectedDivision === division.division_id ? buttonStyles.active : ''
+                }`}
+                onClick={() => handleDivisionClick(division.division_id)}
+              >
+                
+                {division.division_name}
+              </button>
+            ))}
+          </div>
+        </>
       )}
 
-      {/* Wards */}
       {selectedDivision && (
-        <div className={containerStyles.wardContainer}>
-          {wards.map((ward) => (
-            <button
-              key={ward.ward_id}
-              className={buttonStyles.btnSmall}
-              onClick={() => goToWardDetail(ward.ward_id)}
-            >
-              {ward.ward_name}
-            </button>
-          ))}
-        </div>
+        <>
+          <div className={containerStyles.sectionTitle}>
+            <FaMapPin className={containerStyles.sectionIcon} />
+            <span>Select Ward</span>
+          </div>
+          <div className={containerStyles.wardContainer}>
+            {wards.map((ward) => (
+              <button
+                key={ward.ward_id}
+                className={buttonStyles.btnSmall}
+                onClick={() => goToWardDetail(ward.ward_id)}
+              >
+                
+                {ward.ward_name}
+              </button>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

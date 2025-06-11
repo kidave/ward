@@ -1,23 +1,53 @@
 /* container.module.css - Updated Version */
 .regionContainer {
   background-color: white;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  min-height: 60vh;
+  padding-bottom: 40px;
 }
+
+.regionDesignBar {
+  width: 70%;
+  height: 6px;
+  background: linear-gradient(90deg, #fcc700 60%, #fffbe6 100%);
+  border-radius: 3px;
+  margin: 18px auto 30px auto;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  margin: 2.5rem 0 1rem 0;
+  justify-content: center;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 8px #fffbe6;
+}
+
+.sectionIcon {
+  font-size: 1.5rem;
+  color: #fcc700;
+  filter: drop-shadow(0 2px 6px #fffbe6);
+}
+
 
 .cityContainer {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 50px;
 }
+
 
 .divisionContainer {
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin: 50px 0;
+  margin-bottom: 50px;
   flex-wrap: wrap;
 }
 
@@ -25,7 +55,6 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 20px 0;
   flex-wrap: wrap;
 }
 
@@ -38,7 +67,7 @@
 .page {
   display: flex;
   flex-direction: column-reverse;
-  min-height: 200vh;
+  min-height: 100vh;
 }
 
 .wardDetailMain {

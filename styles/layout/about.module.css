@@ -1,0 +1,149 @@
+.about {
+  background: linear-gradient(90deg, #fffbe6 60%, #fcc70010 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(252, 199, 0, 0.07);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin: 32px auto 32px auto;
+  max-width: 80%;
+  text-align: center;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #fffbe6;
+  border: none;
+  border-radius: 50%;
+  padding: 0.4em 0.6em;
+  font-size: 1.1rem;
+  color: #fcc700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(252, 199, 0, 0.07);
+  transition: background 0.2s;
+  z-index: 2;
+}
+.closeBtn:hover {
+  background: #fcc700;
+  color: #fffbe6;
+}
+
+.showAboutBtn {
+  position: fixed;
+  top: 120px;
+  right: 32px;
+  z-index: 3000;
+  background: #fffbe6;
+  color: #fcc700;
+  border: 1.5px solid #fcc700;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 2px 8px rgba(252,199,0,0.10);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+  outline: none;
+}
+
+.showAboutBtn:hover,
+.showAboutBtn:focus {
+  background: #fcc700;
+  color: #fffbe6;
+  border-color: #fcc700;
+}
+
+@media (max-width: 700px) {
+  .showAboutBtn {
+    top: 16px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}
+
+.iconRow {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.icon {
+  font-size: 2.5rem;
+  color: #fcc700;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(252, 199, 0, 0.13);
+  padding: 0.7rem;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  background: lightgoldenrodyellow;
+  border-radius: 10px;
+  padding: 0.7rem 1.2rem;
+}
+
+.infoIcon {
+  font-size: 1.3rem;
+  color: #fcc700;
+}
+
+.infoText {
+  font-size: 1.08rem;
+  color: #444;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.text {
+  font-size: 1.18rem;
+  color: #444;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.highlight {
+  color: #fcc700;
+  font-weight: 600;
+}
+
+.emphasis {
+  color: #1e293b;
+  font-weight: 500;
+  font-style: italic;
+  display: block;
+  margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+  .aboutSection {
+    padding: 1.2rem 0.5rem;
+  }
+  .iconRow {
+    gap: 1.2rem;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+  .text {
+    font-size: 1rem;
+  }
+}

@@ -1,4 +1,71 @@
-/* Metrics for Home Page and Ward Page */
+.metricsFloatingCard {
+  position: fixed;
+  top: 120px;
+  left: -180px;
+  width: 200px;
+  border-radius: 18px 0 0 18px;
+  padding: 1.2rem 1.2rem 1.2rem 1.5rem;
+  z-index: 2000;
+  transition: right 0.4s cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+}
+
+.metricsFloatingCard:hover,
+.metricsFloatingCard:focus-within {
+  left: 0;
+  opacity: 0.8;
+}
+
+.metricsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.metricsIcon {
+  font-size: 1.5rem;
+  color: #fcc700;
+}
+
+.metricsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.metricSmall {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(252, 199, 0, 0.07);
+  padding: 0.7rem 1rem;
+  text-align: center;
+}
+
+.metricSmall .number {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fcc700;
+}
+
+.metricSmall .label {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+@media (max-width: 700px) {
+  .metricsFloatingCard {
+    display: none;
+  }
+}
+
+
+
+
+
 
 .metrics {
   display: flex;
@@ -9,7 +76,7 @@
 }
 
 .metricSmall {
-  background-color: whitesmoke;
+  background-color: lightgoldenrodyellow;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px 40px;

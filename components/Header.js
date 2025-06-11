@@ -38,10 +38,9 @@ export default function Header() {
   ];
 
   return (
-    <>
-      {/* Top Donate Bar */}
+    <header className={styles.header}>
       <div className={styles.topBar}>
-        <span>Donations help us carry out our work!</span>
+        <span className={styles.topBarText}>Donations help us carry out our work!</span>
         <button
           className={styles.donateNow}
           onClick={() => router.push('https://www.walkingproject.org/donate')}
@@ -50,16 +49,16 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Main Header */}
-      <header className={styles.header}>
-        <div className={styles.headerLeft}>
+
+      <div className={styles.bottomBar}>
+        <div className={styles.logo}>
           <button
             className={styles.logoButton}
             onClick={() => router.push('/')}
           >
             <img src="/wp_icon_sm.png" alt="Logo" className={styles.logo} />
           </button>
-          <h3>Walking Project</h3>
+          <span className={styles.bottomBarText}>Walking Project</span>
         </div>
 
         <nav className={styles.nav}>
@@ -77,7 +76,6 @@ export default function Header() {
             <div key={label} className={styles.dropdown}>
               <button
                 className={styles.navButton}
-                // No onClick handler needed for hover
                 tabIndex={0}
               >
                 {label}
@@ -97,7 +95,7 @@ export default function Header() {
             </div>
           ))}
         </nav>
-      </header>
-    </>
+      </div>
+    </header>
   );
 }
