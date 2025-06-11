@@ -1,5 +1,4 @@
 .btnSmall {
-  font-family: Cambria, serif;
   background-color: white;
   color: grey;
   border: 1px solid #ddd;
@@ -24,7 +23,6 @@
 
 
 .btnMedium {
-  font-family: Cambria, serif;
   border: none;
   background-color: white;
   border-radius: 10px;
@@ -52,7 +50,6 @@
 
 
 .btnBig {
-  font-family: Cambria, serif;
   background-color: white;
   border: none;
   color: grey;
@@ -81,7 +78,6 @@
 
 
 .btnWide {
-  font-family: Cambria, serif;
   background-color: white;
   border: none;
   padding: 10px;

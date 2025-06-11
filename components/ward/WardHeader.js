@@ -5,7 +5,7 @@ export default function WardHeader() {
     <header className={styles.header}>
       <div className={styles.headerLeft}>
         <img src="/wp_icon_sm.png" alt="Ward" className={styles.logo} />
-        <h1>Ward Dashboard</h1>
+        <h1>Walking Project</h1>
       </div>
     </header>
   );

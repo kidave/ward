@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <>
       <Head>
-        <title>Ward Dashboard</title>
+        <title>Walking Project</title>
       </Head>
       <Metrics />
       <Region />

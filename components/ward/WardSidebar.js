@@ -244,6 +244,7 @@ export default function WardSidebar({
             <button
               className={`${styles.tab} ${activeTab === 'action' ? styles.active : ''}`}
               onClick={() => setActiveTab('action')}
+              disabled={isTabDisabled('action')}
             >
               <span className={styles.tabIcon}><FiCheckSquare /></span>
               <span className={styles.tabText}>Action</span>
@@ -285,6 +286,7 @@ export default function WardSidebar({
           <button
             className={`${styles.tab} ${activeTab === 'action' ? styles.active : ''}`}
             onClick={() => setActiveTab('action')}
+            disabled={isTabDisabled('action')}
             title="Action"
           >
             <FiCheckSquare />

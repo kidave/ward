@@ -82,9 +82,7 @@
 }
 
 .dropdown {
-  font-family: Cambria, serif;
   padding: 0.5rem;
-  font-size: 1rem;
   border: none;
   color: grey;
   background-color: rgb(254, 255, 240);
@@ -106,7 +104,6 @@
 
 
 .tab {
-  font-family: Cambria, serif;
   gap: 20px;
   display: flex;
   align-items: center;
@@ -140,12 +137,9 @@
 .tabIcon {
   display: flex;
   align-items: center;
-  font-size: 1rem;
 }
 
 .tabText {
-  font-family: Cambria, serif;
-  font-size: 1rem;
   color: grey;
 }
 
@@ -161,7 +155,6 @@
 .iconTabBar .tab {
   display: flex;
   margin-top: 10px;
-  font-size: 35px;
   width: 35px;
   height: 35px;
 }

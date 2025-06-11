@@ -1,7 +1,6 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import WardHeader from '../../components/ward/WardHeader';
 import WardSidebar from '../../components/ward/WardSidebar';
 import WardContent from '../../components/ward/WardContent';
 import styles from '../../styles/layout/container.module.css';
@@ -37,7 +36,6 @@ export default function WardDetail() {
   return (
     <WardProvider wardId={wardId}> {/* ✅ */}
       <div className={styles.page}>
-        <WardHeader />
         <div className={styles.wardDetailMain}>
           <WardSidebar
             wardId={wardId} // ✅

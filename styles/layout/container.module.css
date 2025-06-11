@@ -289,7 +289,6 @@
 
 
 .filterButtons {
-  font-family: Cambria, serif;
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
@@ -297,7 +296,6 @@
 }
 
 .filterButton {
-  font-family: Cambria, serif;
   padding: 8px 16px;
   border-radius: 10px;
   border: none;

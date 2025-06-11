@@ -1,16 +1,64 @@
 .header {
-  background: linear-gradient(135deg, gold 0%, #fcc700 100%);
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.2);
+  background:#fcc700;
+  padding: 7px;
   display: flex;
   justify-content: space-between;
+  color: black;
+  align-items: center;
+  position: sticky;
+  top: 4rem;
+  z-index: 1000;
+}
+
+.topBar {
+  background-color: black;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+
+.donateNow {
+  background-color: black;
+  color: white;
+  border: 1.5px solid white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 30px;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
   align-items: center;
 }
 
 .headerLeft {
   display: flex;
   align-items: center;
+  gap: 1rem;
+}
+
+.headerLeft h3 {
+  font-size: 1.2rem; /* Smaller text */
+  margin: 0;
 }
 
 .headerRight {
@@ -19,9 +67,10 @@
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
+  margin-left: 1rem;
 }
 
 .logoButton {
@@ -31,23 +80,38 @@
   cursor: pointer;
 }
 
-.home {
-  font-family: Cambria, serif;
+.dropdown {
+  position: relative;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
   background-color: white;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  margin-right: 50px;
-  padding: 20px 30px;
+  border: 1px solid #ccc;
+  z-index: 999;
+  min-width: 180px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+}
+
+.dropdown:hover .dropdownContent,
+.dropdown:focus-within .dropdownContent {
+  display: block;
+}
+
+.dropdownItem {
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-.home:hover {
-  background-color: whitesmoke;
-  color: grey;
+.dropdownItem:hover {
+  background-color: #f0f0f0;
 }
 
-/* Outcome Header Styles */
+
 .timelineHeader {
   background: linear-gradient(135deg, gold 0%, #fcc700 100%);
   padding: 2rem;
@@ -113,3 +177,5 @@
     gap: 0.5rem;
   }
 }
+
+
