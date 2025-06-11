@@ -96,7 +96,6 @@ export default function WardSidebar({
     fetchDivisionForWard();
   }, [wardId]);
 
-  // Fetch wards when current division is set
   useEffect(() => {
     if (!currentDivision) return;
     const fetchWards = async () => {
@@ -110,10 +109,14 @@ export default function WardSidebar({
           .order('ward_name', { ascending: true });
         if (error) throw error;
         setWards(data);
-        // Auto-select first ward if available
+        // Only auto-select if no wardId is present
         if (data && data.length > 0) {
-          setSelectedWardId(data[0].ward_id);
-          router.push(`/wards/${data[0].ward_id}`);
+          if (!wardId) {
+            setSelectedWardId(data[0].ward_id);
+            router.push(`/wards/${data[0].ward_id}`);
+          } else {
+            setSelectedWardId(wardId);
+          }
         } else {
           setSelectedWardId(null);
         }
@@ -124,7 +127,7 @@ export default function WardSidebar({
       }
     };
     fetchWards();
-  }, [currentDivision]);
+  }, [currentDivision, wardId]);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
