@@ -19,7 +19,7 @@ export default function Header() {
       { label: 'Community Walks', path: 'https://www.walkingproject.org/activities-projects/community-walks' },
       { label: 'Community Talks', path: 'https://www.walkingproject.org/activities-projects/community-talks' },
       { label: 'AQ Mapping', path: 'https://www.walkingproject.org/activities-projects/aq-mapping' },
-      { label: 'Ward Map', path: 'https://www.walkingproject.org/activities-projects/ward-map' },
+      { label: 'Ward Map', path: 'https://www.walkingproject.org/activities-projects/wardmap' },
       { label: 'Student Engagement', path: 'https://www.walkingproject.org/activities-projects/student-engagement' },
       { label: 'Temperature Mapping', path: 'https://www.walkingproject.org/activities-projects/temperature-mapping' },
       { label: 'Footpath Mapping', path: 'https://www.walkingproject.org/activities-projects/footpath-mapping' },
