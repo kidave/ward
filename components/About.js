@@ -21,7 +21,7 @@ export default function About({ show = true, onClose }) {
         <strong>Walking Project</strong> is a citizen-driven initiative to make our neighborhoods more walkable, inclusive, and vibrant. 
         Through <span className={styles.highlight}>ward committees</span>, we bring together residents, local leaders, and volunteers to map issues, track progress, and foster collaboration for better streets and public spaces. 
         <br /><br />
-        <span className={styles.emphasis}>Join us in building a connected, safe, and healthy city—starting with your own ward!</span>
+        <span className={styles.emphasis}>Join us in building a connected, safe, and healthy city, starting with your own ward!</span>
       </p>
       <div className={styles.infoRow}>
         <FaMapSigns className={styles.infoIcon} />

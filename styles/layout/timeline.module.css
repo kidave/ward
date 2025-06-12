@@ -27,11 +27,11 @@
 
 .filterButton:hover {
   transform: translateY(-5px);
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .activeFilter {
-  background-color: lightgoldenrodyellow;
+  background-color: whitesmoke;
   color: grey;
   font-weight: bold;
   transform: translateY(-1px);
@@ -105,10 +105,15 @@
 .timelineDate {
   margin: 1rem;
   padding: 0.5rem 1rem;
-  background: #fffbe6;
+  background: whitesmoke;
   color: black;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border: none
+  border: none;
+  border-radius: 10px;
+}
+
+.timelineDate:hover {
+  background: gainsboro;
 }
 
 
@@ -122,10 +127,6 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.timelineCard:hover {
-  transform: translateY(-5px);
-  background-color: whitesmoke;
-}
 
 .cardHeader {
   display: flex;
