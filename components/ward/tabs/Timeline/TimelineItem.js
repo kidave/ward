@@ -2,12 +2,8 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MeetingDetails from './MeetingDetails';
 import UpdateDetails from './UpdateDetails';
-import styles from '../../../../styles/layout/container.module.css';
-
-function getIcon(item) {
-  if (item.icon) return item.icon;
-  return item.type === 'meeting' ? '👥' : '📝';
-}
+import styles from '../../../../styles/layout/timeline.module.css';
+import { FaUsers, FaRegEdit } from 'react-icons/fa';
 
 function formatDate(date, type) {
   if (!(date instanceof Date)) date = new Date(date);
@@ -48,7 +44,15 @@ export default function TimelineItem({ item, isLast, autoExpand}) {
             transition={{ duration: 0.3 }}
             className={`${styles.timelineCard} ${item.type === 'meeting' ? styles.meetingCard : styles.updateCard}`}
           >
+            
             <div className={styles.cardHeader}>
+              <div className={styles.timelineCardIcon}>
+                {item.type === 'meeting' ? (
+                  <FaUsers className={styles.timelineIconFa} />
+                ) : (
+                  <FaRegEdit className={styles.timelineIconFa} />
+                )}
+              </div>
               <h4 className={styles.timelineCardTitle}>{item.title}</h4>
               <span className={styles.cardTypeBadge}>
                 {item.type === 'meeting' ? 'Meeting' : 'Update'}

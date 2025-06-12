@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import TimelineHeader from './Timeline/TimelineHeader';
 import TimelineItem from './Timeline/TimelineItem';
-import styles from '../../../styles/layout/container.module.css';
+import styles from '../../../styles/layout/timeline.module.css';
 
 export default function TimelineTab({ timelines, wardInfo }) {
   const [filter, setFilter] = useState('all');

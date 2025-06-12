@@ -114,6 +114,11 @@
   text-align: center;
 }
 
+.memberCard:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+
 .memberImageContainer {
   width: 80px;
   height: 80px;

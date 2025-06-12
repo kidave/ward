@@ -1,4 +1,4 @@
-import styles from '../../../../styles/layout/container.module.css';
+import styles from '../../../../styles/layout/timeline.module.css';
 
 function formatOperationPoints(operation) {
   if (!operation) return [];
