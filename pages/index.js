@@ -15,6 +15,7 @@ function HomePage() {
       <Head>
         <title>Walking Project</title>
       </Head>
+      <Metrics />
       <About show={showAbout} onClose={() => setShowAbout(false)} />
       {!showAbout && (
         <button
@@ -26,7 +27,7 @@ function HomePage() {
         </button>
       )}
       <Region />
-      <Metrics />
+      
     </>
   );
 }

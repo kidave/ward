@@ -1,59 +1,96 @@
-.metricsFloatingCard {
-  position: fixed;
-  top: 120px;
-  left: -180px;
-  width: 200px;
-  border-radius: 18px 0 0 18px;
-  padding: 1.2rem 1.2rem 1.2rem 1.5rem;
-  z-index: 2000;
-  transition: right 0.4s cubic-bezier(.4,0,.2,1);
-  cursor: pointer;
-}
-
-.metricsFloatingCard:hover,
-.metricsFloatingCard:focus-within {
-  left: 0;
-  opacity: 0.8;
-}
-
 .metricsHeader {
+  position: fixed;
+  top: 150px;
+  left: 10px;
+  z-index: 2100;
+  background: lightgoldenrodyellow;
+  color: grey;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(252,199,0,0.10);
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.7rem;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1e293b;
-  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.18s;
 }
+
 
 .metricsIcon {
   font-size: 1.5rem;
   color: #fcc700;
 }
 
-.metricsList {
+.metricsOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 2200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metricsPopup {
+  background: none;
+  border-radius: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  padding: 2.2rem 2.5rem 2rem 2.5rem;
+  min-width: 320px;
+  max-width: 90vw;
+  min-height: 30vh;
+  max-height: 50vh;
+  overflow-y: auto;
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.metricsHeaderPopup {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+
+
+.metricsList {
+  display: flex;
+  flex-direction: row;
   gap: 1.1rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .metricSmall {
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(252, 199, 0, 0.07);
-  padding: 0.7rem 1rem;
+  opacity: 0.5;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
   text-align: center;
 }
+
 
 .metricSmall .number {
   font-size: 1.3rem;
   font-weight: bold;
-  color: #fcc700;
+  color: black;
 }
 
 .metricSmall .label {
   font-size: 0.9rem;
-  color: #444;
+  color: black;
 }
 
 @media (max-width: 700px) {
@@ -67,33 +104,6 @@
 
 
 
-.metrics {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  margin: 50px;
-  flex-wrap: wrap;
-}
-
-.metricSmall {
-  background-color: lightgoldenrodyellow;
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px 40px;
-  text-align: center;
-}
-
-.metricSmall .number {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.metricSmall .label {
-  font-size: 0.9rem;
-}
-
-
-/* Members for Ward Page */
 .memberList {
   display: flex;
   gap: 20px;
@@ -133,7 +143,11 @@
 }
 
 
-/* styles/components/hoverCard.module.css */
+
+
+
+
+
 .hoverCard {
   position: fixed;
   z-index: 1000;
@@ -169,10 +183,10 @@
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
-  color: #666;
+  color: grey;
   padding: 0 5px;
 }
 
 .closeButton:hover {
-  color: #333;
+  color: black;
 }

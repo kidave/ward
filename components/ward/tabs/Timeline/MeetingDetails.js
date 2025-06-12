@@ -1,4 +1,3 @@
-import { color } from 'framer-motion';
 import styles from '../../../../styles/layout/timeline.module.css';
 import { FaMapMarkerAlt, FaUserFriends, FaStar } from 'react-icons/fa';
 

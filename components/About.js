@@ -16,12 +16,11 @@ export default function About({ show = true, onClose }) {
         <FaMapMarkedAlt className={styles.icon} />
         <FaHandsHelping className={styles.icon} />
       </div>
-      <h2 className={styles.title}>Empowering Communities, One Ward at a Time</h2>
+      <h2 className={styles.title}>Improving our Footpaths, One Ward at a Time</h2>
       <p className={styles.text}>
         <strong>Walking Project</strong> is a citizen-driven initiative to make our neighborhoods more walkable, inclusive, and vibrant. 
-        Through <span className={styles.highlight}>ward committees</span>, we bring together residents, local leaders, and volunteers to map issues, track progress, and foster collaboration for better streets and public spaces. 
-        <br /><br />
-        <span className={styles.emphasis}>Join us in building a connected, safe, and healthy city, starting with your own ward!</span>
+        Through <span className={styles.highlight}>ward committees</span>, we bring together residents, local leaders, and volunteers and civic officials to identify walkability issues issues, propose changes, foster collaboration and track progress, for walkable streets and public spaces. 
+        <span className={styles.emphasis}>Join us in building a connected, safe, and healthy city, starting from your own ward!</span>
       </p>
       <div className={styles.infoRow}>
         <FaMapSigns className={styles.infoIcon} />

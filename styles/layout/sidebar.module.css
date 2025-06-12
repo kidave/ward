@@ -1,8 +1,9 @@
 .leftSidebar {
-  background-color: rgb(254, 255, 240);
+  background-color: white;
   width: 250px;
   position: relative;
   transition: width 0.3s ease;
+  border-right: 1px solid gold;
 }
 
 .leftSidebar.collapsed {
@@ -16,7 +17,7 @@
 .logoContainer {
   padding: 10px 0;
   text-align: center;
-  background-color: rgb(254, 255, 240);
+  background-color: white;
 }
 
 .logoExpanded {
@@ -61,7 +62,7 @@
 
 .toggle {
   position: absolute;
-  background-color: rgb(254, 255, 240);
+  background-color: white;
   border: none;
   top: 5px;
   right: 15px;
@@ -85,7 +86,7 @@
   padding: 0.5rem;
   border: none;
   color: grey;
-  background-color: rgb(254, 255, 240);
+  background-color: white;
 }
 
 .dropdown:hover {
@@ -120,12 +121,12 @@
 }
 
 .tab:hover {
-  background-color: lightgoldenrodyellow;
+  background-color: whitesmoke;
 }
 
 
 .tab.active {
-  background-color: lightgoldenrodyellow;
+  background-color: gainsboro;
 }
 
 .tab:disabled {
