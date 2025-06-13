@@ -1,12 +1,20 @@
 import { useEffect, useState, useRef } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import styles from '../styles/components/card.module.css';
-import { FaChartBar } from 'react-icons/fa';
+import { FaChartBar, FaMapMarkedAlt, FaRoute, FaUsers, FaHandsHelping, FaRoad } from 'react-icons/fa';
 
 function Metrics() {
   const [metrics, setMetrics] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const popupTimeout = useRef();
+
+  const metricIcons = {
+    "ward committees": FaMapMarkedAlt,
+    "members": FaUsers,
+    "routes identified": FaRoute,
+    "tasks completed": FaHandsHelping,
+    "road length (km)": FaRoad,
+  };
 
   useEffect(() => {
     const fetchMetrics = async () => {
@@ -18,14 +26,14 @@ function Metrics() {
     fetchMetrics();
   }, []);
 
-  // Handlers for hover logic
+  
   const handleMouseEnter = () => {
     clearTimeout(popupTimeout.current);
     setShowPopup(true);
   };
 
   const handleMouseLeave = () => {
-    popupTimeout.current = setTimeout(() => setShowPopup(false), 120);
+    popupTimeout.current = setTimeout(() => setShowPopup(false), 10);
   };
 
   return (
@@ -55,12 +63,17 @@ function Metrics() {
               <span>Project Metrics</span>
             </div>
             <div className={styles.metricsList}>
-              {metrics.map((m, i) => (
-                <div className={styles.metricSmall} key={i}>
-                  <div className={styles.number}>{m.number}</div>
-                  <div className={styles.label}>{m.label}</div>
-                </div>
-              ))}
+              {metrics.map((m, i) => {
+                const labelKey = m.key ? m.key.toLowerCase() : m.label.toLowerCase();
+                const Icon = metricIcons[labelKey] || FaMapMarkedAlt;
+                return (
+                  <div className={styles.metricSmall} key={i}>
+                    <Icon className={styles.metricIcon} />
+                    <div className={styles.number}>{m.number}</div>
+                    <div className={styles.label}>{m.label}</div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

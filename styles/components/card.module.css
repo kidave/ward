@@ -37,7 +37,6 @@
 .metricsPopup {
   background: none;
   border-radius: 18px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
   padding: 2.2rem 2.5rem 2rem 2.5rem;
   min-width: 320px;
   max-width: 90vw;
