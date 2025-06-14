@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.socialIcons}>
         <a
-          href="https://x.com/"
+          href="https://x.com/walkingproject"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="X"
@@ -17,7 +17,7 @@ export default function Footer() {
           <FaXTwitter/>
         </a>
         <a
-          href="https://facebook.com/"
+          href="https://www.facebook.com/groups/walkingproject"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"
@@ -26,16 +26,16 @@ export default function Footer() {
           <FaFacebook />
         </a>
         <a 
-            href="https://youtube.com/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label="Youtube"
-            className="youtube"
+          href="http://www.youtube.com/@WalkingProjectIndia" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="Youtube"
+          className="youtube"
         >
           <FaYoutube />
         </a>
         <a
-          href="https://linkedin.com/"
+          href="https://www.linkedin.com/company/walking-project"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
@@ -44,7 +44,7 @@ export default function Footer() {
           <FaLinkedin />
         </a>
         <a
-          href="https://instagram.com/"
+          href="https://www.instagram.com/walkingprojectindia"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
@@ -52,7 +52,13 @@ export default function Footer() {
         >
           <FaInstagram />
         </a>
-        <a href="https://bluesky.com/" target="_blank" rel="noopener noreferrer" aria-label="BlueSky" className="bluesky">
+        <a  
+          href="https://bsky.app/profile/walkingproject.bsky.social" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="BlueSky" 
+          className="bluesky"
+        >
           <FaBluesky />
         </a>
       </div>
