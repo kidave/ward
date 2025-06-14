@@ -1,16 +1,17 @@
 .leftSidebar {
   background-color: white;
-  width: 250px;
+  width: 70px; /* Collapsed width */
   position: relative;
-  transition: width 0.3s ease;
+  transition: width 0.3s cubic-bezier(.4,0,.2,1);
   border-right: 1px solid gold;
-}
-
-.leftSidebar.collapsed {
   overflow: hidden;
-  width: 70px;
 }
 
+.leftSidebar:hover,
+.leftSidebar:focus-within {
+  width: 250px; /* Expanded width */
+  box-shadow: 2px 0 12px rgba(252,199,0,0.04);
+}
 
 
 

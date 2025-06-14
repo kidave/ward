@@ -3,6 +3,7 @@ import Metrics from "../components/Metrics";
 import Region from "../components/Region";
 import Layout from "../components/Layout";
 import About from "../components/About";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import styles from "../styles/layout/about.module.css";
@@ -27,7 +28,7 @@ function HomePage() {
         </button>
       )}
       <Region />
-      
+      <Footer />
     </>
   );
 }

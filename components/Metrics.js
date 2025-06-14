@@ -9,7 +9,7 @@ function Metrics() {
   const popupTimeout = useRef();
 
   const metricIcons = {
-    "ward committees": FaMapMarkedAlt,
+    "active ward committees": FaMapMarkedAlt,
     "members": FaUsers,
     "routes identified": FaRoute,
     "tasks completed": FaHandsHelping,
