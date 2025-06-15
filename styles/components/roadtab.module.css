@@ -94,14 +94,14 @@
   padding: 7px 10px;
   font-weight: 500;
   font-size: 0.95em;
-  background: #fafafa;
+  background: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .roadButton:hover {
-  background: lightgoldenrodyellow;
+  background: gainsboro;
 }
 
 .roadName {

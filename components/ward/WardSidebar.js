@@ -1,9 +1,13 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../../styles/layout/sidebar.module.css';
 import { useRouter } from 'next/router';
 import { supabase } from '../../utils/supabaseClient';
 import { IoFootsteps } from "react-icons/io5";
-import { FiClock, FiUsers, FiMap, FiCheckSquare, FiGitBranch, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiUsers, FiMap, FiMapPin, FiCheckSquare, FiGitBranch } from "react-icons/fi";
+import { FaRoad } from "react-icons/fa";
+import { TbTimelineEvent } from "react-icons/tb";
+
+
 
 export default function WardSidebar({ 
   wardId, 
@@ -12,10 +16,7 @@ export default function WardSidebar({
   disabledTabs = []
 }) {
   const router = useRouter();
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [sidebarWidth, setSidebarWidth] = useState(250);
-  const sidebarRef = useRef(null);
-  const [isResizing, setIsResizing] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   // State for ward selection
   const [divisions, setDivisions] = useState([]);
@@ -27,31 +28,6 @@ export default function WardSidebar({
   const [wardsError, setWardsError] = useState(null);
 
   const isTabDisabled = (tab) => disabledTabs.includes(tab);
-
-  // Handle sidebar resize
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!isResizing) return;
-      const newWidth = e.clientX - sidebarRef.current.getBoundingClientRect().left;
-      if (newWidth > 200 && newWidth < 300) {
-        setSidebarWidth(newWidth);
-      }
-    };
-
-    const handleMouseUp = () => {
-      setIsResizing(false);
-    };
-
-    if (isResizing) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-    }
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isResizing]);
 
   // Fetch all divisions on mount
   useEffect(() => {
@@ -109,7 +85,6 @@ export default function WardSidebar({
           .order('ward_name', { ascending: true });
         if (error) throw error;
         setWards(data);
-        // Only auto-select if no wardId is present
         if (data && data.length > 0) {
           if (!wardId) {
             setSelectedWardId(data[0].ward_id);
@@ -129,10 +104,6 @@ export default function WardSidebar({
     fetchWards();
   }, [currentDivision, wardId]);
 
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
   const handleDivisionChange = (divisionId) => {
     setCurrentDivision(divisionId);
     setWards([]);
@@ -146,11 +117,11 @@ export default function WardSidebar({
 
   return (
     <div 
-      ref={sidebarRef}
-      className={`${styles.leftSidebar} ${isCollapsed ? styles.collapsed : ''}`}
-      style={{ width: isCollapsed ? '70px' : `${sidebarWidth}px` }}
+      className={`${styles.leftSidebar} ${isHovered ? styles.hovered : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Logo and toggle button */}
+      {/* Logo */}
       <div
         className={styles.logoContainer}
         onClick={() => router.push('/')}
@@ -159,151 +130,113 @@ export default function WardSidebar({
         tabIndex={0}
         title="Home"
       >
-        {!isCollapsed ? (
-          <div className={styles.logoExpanded}>
-            <img src="/wp_text_logo.png" alt="Ward" className={styles.logoText} />
-          </div>
-        ) : (
-          <div className={styles.logoCollapsed}>
-            <IoFootsteps className={styles.logoIcon} aria-label="Walking Project" />
-          </div>
-        )}
+        <div className={styles.logoContent}>
+          <IoFootsteps className={styles.logoIcon} aria-label="Walking Project" />
+          {isHovered && <img src="/wp_text_logo.png" alt="Ward" className={styles.logoText} />}
+        </div>
       </div>
 
-      <button 
-        className={`${styles.toggle} ${isCollapsed ? styles.toggle : ''}`}
-        onClick={toggleSidebar}
-        aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-        title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
-      >
-        {isCollapsed ? <FiChevronRight className={styles.logoIcon} /> : <FiChevronLeft className={styles.logoIcon} />}
-      </button>
-
-      {!isCollapsed ? (
-        <>
-          <div className={styles.selector}>
-            {/* Division Dropdown */}
-            {loadingDivisions ? (
-              <p>Loading divisions...</p>
-            ) : (
-              <select
-                id="division-select"
-                value={currentDivision || ''}
-                onChange={e => handleDivisionChange(e.target.value)}
-                className={styles.dropdown}
-              >
-                {divisions.map((division) => (
-                  <option key={division.division_id} value={division.division_id}>
-                    {division.division_name}
-                  </option>
-                ))}
-              </select>
-            )}
-
-            {/* Ward Dropdown */}
-            {loadingWards ? (
-              <p>Loading wards...</p>
-            ) : wardsError ? (
-              <p>Error loading wards: {wardsError}</p>
-            ) : (
-              <select
-                id="ward-select"
-                value={selectedWardId || ''}
-                onChange={e => handleWardChange(e.target.value)}
-                className={styles.dropdown}
-              >
-                {wards.map((ward) => (
-                  <option key={ward.ward_id} value={ward.ward_id}>
-                    {ward.ward_name}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
-
-          {/* Tab buttons (expanded) */}
-          <div>
-            <button
-              className={`${styles.tab} ${activeTab === 'timeline' ? styles.active : ''}`}
-              onClick={() => setActiveTab('timeline')}
-            >
-              <span className={styles.tabIcon}><FiClock /></span>
-              <span className={styles.tabText}>Timeline</span>
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'member' ? styles.active : ''}`}
-              onClick={() => setActiveTab('member')}
-            >
-              <span className={styles.tabIcon}><FiUsers /></span>
-              <span className={styles.tabText}>Member</span>
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'road' ? styles.active : ''}`}
-              onClick={() => setActiveTab('road')}
-            >
-              <span className={styles.tabIcon}><FiMap /></span>
-              <span className={styles.tabText}>Road</span>
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'action' ? styles.active : ''}`}
-              onClick={() => setActiveTab('action')}
-              disabled={isTabDisabled('action')}
-            >
-              <span className={styles.tabIcon}><FiCheckSquare /></span>
-              <span className={styles.tabText}>Action</span>
-            </button>
-            <button
-              className={`${styles.tab} ${activeTab === 'junction' ? styles.active : ''}`}
-              onClick={() => setActiveTab('junction')}
-              disabled={isTabDisabled('junction')}
-            >
-              <span className={styles.tabIcon}><FiGitBranch /></span>
-              <span className={styles.tabText}>Junction</span>
-            </button>
-          </div>
-        </>
-      ) : (
-        // Collapsed: icon-only tab buttons
-        <div className={styles.iconTabBar}>
-          <button
-            className={`${styles.tab} ${activeTab === 'timeline' ? styles.active : ''}`}
-            onClick={() => setActiveTab('timeline')}
-            title="Timeline"
-          >
-            <FiClock />
-          </button>
-          <button
-            className={`${styles.tab} ${activeTab === 'member' ? styles.active : ''}`}
-            onClick={() => setActiveTab('member')}
-            title="Member"
-          >
-            <FiUsers />
-          </button>
-          <button
-            className={`${styles.tab} ${activeTab === 'road' ? styles.active : ''}`}
-            onClick={() => setActiveTab('road')}
-            title="Road"
-          >
-            <FiMap />
-          </button>
-          <button
-            className={`${styles.tab} ${activeTab === 'action' ? styles.active : ''}`}
-            onClick={() => setActiveTab('action')}
-            disabled={isTabDisabled('action')}
-            title="Action"
-          >
-            <FiCheckSquare />
-          </button>
-          <button
-            className={`${styles.tab} ${activeTab === 'junction' ? styles.active : ''}`}
-            onClick={() => setActiveTab('junction')}
-            disabled={isTabDisabled('junction')}
-            title="Junction"
-          >
-            <FiGitBranch />
-          </button>
+      {/* Dropdowns - always show icons */}
+      <div className={styles.selector}>
+        {/* Division Dropdown */}
+        <div className={styles.dropdownWrapper}>
+          <FiMapPin className={styles.dropdownIcon} title="Division" />
+          {isHovered && (
+            <>
+              {loadingDivisions ? (
+                <p>Loading...</p>
+              ) : (
+                <select
+                  id="division-select"
+                  value={currentDivision || ''}
+                  onChange={e => handleDivisionChange(e.target.value)}
+                  className={styles.dropdown}
+                >
+                  {divisions.map((division) => (
+                    <option key={division.division_id} value={division.division_id}>
+                      {division.division_name}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </>
+          )}
         </div>
-      )}
+
+        {/* Ward Dropdown */}
+        <div className={styles.dropdownWrapper}>
+          <FiMap className={styles.dropdownIcon} title="Ward" />
+          {isHovered && (
+            <>
+              {loadingWards ? (
+                <p>Loading...</p>
+              ) : wardsError ? (
+                <p>Error</p>
+              ) : (
+                <select
+                  id="ward-select"
+                  value={selectedWardId || ''}
+                  onChange={e => handleWardChange(e.target.value)}
+                  className={styles.dropdown}
+                >
+                  <option value="">Select Ward</option>
+                  {wards.map((ward) => (
+                    <option key={ward.ward_id} value={ward.ward_id}>
+                      {ward.ward_name}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className={styles.tabContainer}>
+        <button
+          className={`${styles.tab} ${activeTab === 'timeline' ? styles.active : ''}`}
+          onClick={() => setActiveTab('timeline')}
+          title="Timeline"
+        >
+          <TbTimelineEvent className={styles.tabIcon} />
+          {isHovered && <span className={styles.tabText}>Timeline</span>}
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === 'member' ? styles.active : ''}`}
+          onClick={() => setActiveTab('member')}
+          title="Member"
+        >
+          <FiUsers className={styles.tabIcon} />
+          {isHovered && <span className={styles.tabText}>Member</span>}
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === 'road' ? styles.active : ''}`}
+          onClick={() => setActiveTab('road')}
+          title="Road"
+        >
+          <FaRoad className={styles.tabIcon} />
+          {isHovered && <span className={styles.tabText}>Road</span>}
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === 'action' ? styles.active : ''}`}
+          onClick={() => setActiveTab('action')}
+          disabled={isTabDisabled('action')}
+          title="Action"
+        >
+          <FiCheckSquare className={styles.tabIcon} />
+          {isHovered && <span className={styles.tabText}>Action</span>}
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === 'junction' ? styles.active : ''}`}
+          onClick={() => setActiveTab('junction')}
+          disabled={isTabDisabled('junction')}
+          title="Junction"
+        >
+          <FiGitBranch className={styles.tabIcon} />
+          {isHovered && <span className={styles.tabText}>Junction</span>}
+        </button>
+      </div>
     </div>
   );
 }

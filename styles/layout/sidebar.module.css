@@ -1,86 +1,73 @@
 .leftSidebar {
   background-color: white;
-  width: 70px; /* Collapsed width */
-  position: relative;
+  width: 70px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
   transition: width 0.3s cubic-bezier(.4,0,.2,1);
-  border-right: 1px solid gold;
+  border-right: 1px solid #f0f0f0;
   overflow: hidden;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
 }
 
-.leftSidebar:hover,
-.leftSidebar:focus-within {
-  width: 250px; /* Expanded width */
-  box-shadow: 2px 0 12px rgba(252,199,0,0.04);
+.leftSidebar.hovered {
+  width: 250px;
 }
-
 
 
 .logoContainer {
-  padding: 10px 0;
-  text-align: center;
-  background-color: white;
+  padding: 16px 0;
+  cursor: pointer;
 }
 
-.logoExpanded {
+.logoContent {
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-
-.logoText {
-  
-  width: 160px;
-  height: 40px;
-  margin-right: 20px;
-}
-
-.logoText:hover {
-  cursor: pointer;
-}
-
-
-.logoCollapsed {
-  display: flex;
   justify-content: center;
-  margin-top: 50px;
-}
-
-.logoCollapsed:hover {
-  cursor: pointer;
+  gap: 12px;
+  padding: 0 10px;
 }
 
 .logoIcon {
-  width: 30px;
-  height: 30px;
-  color: #fcc700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-
-
-.toggle {
-  position: absolute;
-  background-color: white;
-  border: none;
-  top: 5px;
-  right: 15px;
-  width: 40px;
+  width: 32px;
   height: 40px;
-  cursor: pointer;
-  z-index: 10;
+  color: #fcc700;
+  flex-shrink: 0;
 }
 
+.logoText {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.leftSidebar.hovered .logoText {
+  opacity: 1;
+}
 
 
 
 .selector {
-  padding: 10px;
+  padding: 16px 10px;
   align-items: center;
   display: flex;
   flex-direction: column;
+  gap: 12px;
+}
+
+.dropdownWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdownIcon {
+  width: 24px;
+  height: 32px;
+  color: grey;
+  flex-shrink: 0;
 }
 
 .dropdown {
@@ -105,29 +92,35 @@
 
 
 
+.tabContainer {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .tab {
-  gap: 20px;
   display: flex;
   align-items: center;
   background: none;
   border: none;
-  width: 90%;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 10px 16px;
+  margin: 0 8px;
+  border-radius: 6px;
   color: grey;
-  text-align: left;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .tab:hover {
   background-color: whitesmoke;
 }
 
-
 .tab.active {
   background-color: gainsboro;
+  color: grey;
 }
 
 .tab:disabled {
@@ -135,40 +128,22 @@
   cursor: default;
 }
 
-
 .tabIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .tabText {
-  color: grey;
+  margin-left: 12px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-
-.iconTabBar {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-  margin-right: 5px;
-}
-
-.iconTabBar .tab {
-  display: flex;
-  margin-top: 10px;
-  width: 35px;
-  height: 35px;
-}
-
-
-.resizeHandle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 10px;
-  height: 100%;
-  background: transparent;
-  cursor: col-resize;
-  z-index: 5;
+.leftSidebar.hovered .tabText {
+  opacity: 1;
 }

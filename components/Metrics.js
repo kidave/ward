@@ -6,7 +6,6 @@ import { FaChartBar, FaMapMarkedAlt, FaRoute, FaUsers, FaHandsHelping, FaRoad } 
 function Metrics() {
   const [metrics, setMetrics] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-  const popupTimeout = useRef();
 
   const metricIcons = {
     "active ward committees": FaMapMarkedAlt,
@@ -27,32 +26,26 @@ function Metrics() {
   }, []);
 
   
-  const handleMouseEnter = () => {
-    clearTimeout(popupTimeout.current);
-    setShowPopup(true);
-  };
-
-  const handleMouseLeave = () => {
-    popupTimeout.current = setTimeout(() => setShowPopup(false), 10);
+  const handleOverlayClick = (e) => {
+    if (e.target.classList.contains(styles.metricsOverlay)) {
+      setShowPopup(false);
+    }
   };
 
   return (
     <>
       <div
         className={styles.metricsHeader}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         tabIndex={0}
         style={{ cursor: 'pointer' }}
+        onClick={() => setShowPopup((prev) => !prev)}
       >
         <FaChartBar className={styles.metricsIcon} />
       </div>
       {showPopup && (
         <div
           className={styles.metricsOverlay}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={() => setShowPopup(false)}
+          onClick={handleOverlayClick}
         >
           <div
             className={styles.metricsPopup}

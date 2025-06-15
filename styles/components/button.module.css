@@ -10,7 +10,7 @@
 }
 
 .btnSmall:hover {
-  background-color: lightgoldenrodyellow;
+  background-color: whitesmoke;
   transform: translateY(-5px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -42,7 +42,7 @@
 }
 
 .btnMedium.active {
-  background-color: lightgoldenrodyellow;
+  background-color: whitesmoke;
   color: grey;
   font-weight: bold;
   transform: translateY(-1px);
@@ -70,7 +70,7 @@
 }
 
 .btnBig.active {
-  background-color: lightgoldenrodyellow;
+  background-color: whitesmoke;
   transform: translateY(-1px);
   opacity: 1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

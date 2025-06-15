@@ -36,7 +36,7 @@ export default function WardDetail() {
   return (
     <WardProvider wardId={wardId}> {/* ✅ */}
       <div className={styles.page}>
-        <div className={styles.wardDetailMain}>
+        <div className={styles.wardMain}>
           <WardSidebar
             wardId={wardId} // ✅
             activeTab={activeTab}
