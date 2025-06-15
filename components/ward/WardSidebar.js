@@ -131,8 +131,8 @@ export default function WardSidebar({
         title="Home"
       >
         <div className={styles.logoContent}>
-          <IoFootsteps className={styles.logoIcon} aria-label="Walking Project" />
-          {isHovered && <img src="/wp_text_logo.png" alt="Ward" className={styles.logoText} />}
+          <img src="/wp_icon_sm.png" className={styles.logoIcon} />
+          {isHovered && <img src="/wp_text_logo.png" className={styles.logoText} />}
         </div>
       </div>
 
@@ -140,7 +140,7 @@ export default function WardSidebar({
       <div className={styles.selector}>
         {/* Division Dropdown */}
         <div className={styles.dropdownWrapper}>
-          <FiMapPin className={styles.dropdownIcon} title="Division" />
+          <FiMap className={styles.dropdownIcon} title="Division" />
           {isHovered && (
             <>
               {loadingDivisions ? (
@@ -165,7 +165,7 @@ export default function WardSidebar({
 
         {/* Ward Dropdown */}
         <div className={styles.dropdownWrapper}>
-          <FiMap className={styles.dropdownIcon} title="Ward" />
+          <FiMapPin className={styles.dropdownIcon} title="Ward" />
           {isHovered && (
             <>
               {loadingWards ? (

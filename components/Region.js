@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../utils/supabaseClient';
 import containerStyles from '../styles/layout/container.module.css';
 import buttonStyles from '../styles/components/button.module.css';
-import { FaCity, FaMap, FaMapPin } from 'react-icons/fa';
+import { FaCity } from 'react-icons/fa';
+import { FiMap, FiMapPin } from "react-icons/fi";
+
 
 function Region() {
   const [cities, setCities] = useState([]);
@@ -99,7 +101,7 @@ function Region() {
       {selectedCity && (
         <>
           <div className={containerStyles.sectionTitle}>
-            <FaMap className={containerStyles.sectionIcon} />
+            <FiMap className={containerStyles.sectionIcon} />
             <span>Select Division</span>
           </div>
           <div className={containerStyles.divisionContainer}>
@@ -122,7 +124,7 @@ function Region() {
       {selectedDivision && (
         <>
           <div className={containerStyles.sectionTitle}>
-            <FaMapPin className={containerStyles.sectionIcon} />
+            <FiMapPin className={containerStyles.sectionIcon} />
             <span>Select Ward</span>
           </div>
           <div className={containerStyles.wardContainer}>

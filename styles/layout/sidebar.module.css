@@ -6,7 +6,7 @@
   left: 0;
   top: 0;
   transition: width 0.3s cubic-bezier(.4,0,.2,1);
-  border-right: 1px solid #f0f0f0;
+  border-right: 1px solid whitesmoke;
   overflow: hidden;
   z-index: 100;
   display: flex;
@@ -34,7 +34,6 @@
 .logoIcon {
   width: 32px;
   height: 40px;
-  color: #fcc700;
   flex-shrink: 0;
 }
 
